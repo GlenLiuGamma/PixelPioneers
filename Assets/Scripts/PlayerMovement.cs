@@ -45,13 +45,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("c")) {
             if (switchable) {
                 if (mode) {
-                    Debug.Log("mode = " + mode);
                     moveSpeed = 7f;
                     sr.color = Color.red;
                     mode = false;
                 }
                 else if (mode == false) {
-                    Debug.Log("mode = " + mode);
                     moveSpeed = RunningSpeed;
                     sr.color = Color.blue;
                     mode = true;
