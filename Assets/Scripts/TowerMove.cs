@@ -22,10 +22,16 @@ public class TowerMove : MonoBehaviour
         startPos = new Vector2(transform.position.x, -transform.localScale.y+1);
         transform.position = startPos;
         //target = new Vector2(transform.position.x, transform.localScale.y/2);
+        GameEvent.current.Death += onPlayerDeath;
         Debug.Log("The tower is set");
     }
 
     // Update is called once per frame
+
+    private void onPlayerDeath()
+    {
+        Debug.Log("Trigger die event");
+    }
     void Update()
     {
         StartCoroutine(Movement());
@@ -53,6 +59,7 @@ public class TowerMove : MonoBehaviour
 
     private void Die() {
         Debug.Log("The player is detected by the tower");
+        GameEvent.current.DeathTriggerCount();
         Player.transform.position = startpoint.transform.position;
     }
 }

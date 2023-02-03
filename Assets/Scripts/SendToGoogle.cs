@@ -8,7 +8,7 @@ public class SendToGoogle : MonoBehaviour
 {
     [SerializeField] private string URL;
     private long _sessionID;
-    private int _deathCount;
+    [SerializeField] private GameEvent _deathCount;
     // Start is called before the first frame update
 
     private void Awake()
@@ -16,16 +16,19 @@ public class SendToGoogle : MonoBehaviour
         // Assign sessionID to identify playtests
         _sessionID = DateTime.Now.Ticks;
         Debug.Log("_sessionID: " + _sessionID);
+        Debug.Log("Death Count is: " + _deathCount);
         Send();
     }
 
 
-     private IEnumerator Post(string sessionID)
+     private IEnumerator Post(string sessionID, string DeathCnt )
     {
     // Create the form and enter responses
     Debug.Log("In the script");
     WWWForm form = new WWWForm();
     form.AddField("entry.1545020692", sessionID);
+    Debug.Log("Death count : " + _deathCount.Deathcnt);
+    form.AddField("entry.316252562", DeathCnt);
     /* form.AddField("", testInt);
     form.AddField("", testBool);
     form.AddField("", testFloat); */
@@ -43,7 +46,7 @@ public class SendToGoogle : MonoBehaviour
     }
     }
     }
-        public void Send()
+    public void Send()
     {
     /* // Assign variables
     _testInt = Random.Range(0, 101);
@@ -51,7 +54,7 @@ public class SendToGoogle : MonoBehaviour
     _testFloat = Random.Range(0.0f, 10.0f);
     StartCoroutine(Post(_sessionID.ToString(), _testInt.ToString(),
     _testBool.ToString(), _testFloat.ToString())); */
-     StartCoroutine(Post(_sessionID.ToString()));
+     StartCoroutine(Post(_sessionID.ToString(),  _deathCount.Deathcnt.ToString() ));
     }
    
 
