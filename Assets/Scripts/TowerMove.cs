@@ -12,6 +12,8 @@ public class TowerMove : MonoBehaviour
     private Vector2 endPos;
     private Vector2 startPos;
     private Vector2 targetPos;
+    public GameObject startpoint;
+    public GameObject Player;
 
     void Start()
     {
@@ -51,5 +53,6 @@ public class TowerMove : MonoBehaviour
 
     private void Die() {
         Debug.Log("The player is detected by the tower");
+        Player.transform.position = startpoint.transform.position;
     }
 }

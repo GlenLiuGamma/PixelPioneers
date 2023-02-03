@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class triangle_contact : MonoBehaviour
 {
+
+
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
@@ -12,6 +14,7 @@ public class triangle_contact : MonoBehaviour
                 Debug.Log("The box is crashed");
             }else {
                 Debug.Log("you touch the enemy");
+                other.gameObject.transform.position = new Vector2(-10,1);
             }
             
         } 

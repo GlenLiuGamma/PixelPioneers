@@ -456,6 +456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308b10a21d7d4461ebf20f67200f1226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startpoint: {fileID: 2080551271}
+  Player: {fileID: 2000718938}
 --- !u!1 &911818549
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +866,7 @@ GameObject:
   - component: {fileID: 2000718942}
   - component: {fileID: 2000718941}
   - component: {fileID: 2000718943}
+  - component: {fileID: 2000718944}
   m_Layer: 0
   m_Name: runner
   m_TagString: Player
@@ -1002,6 +1005,50 @@ MonoBehaviour:
   moveSpeed: 14
   Running_Color: {r: 0.03146139, g: 0.16661337, b: 0.9528302, a: 0}
   Water_Color: {r: 0.39215687, g: 0.78431374, b: 0.78431374, a: 0}
+--- !u!114 &2000718944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000718938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf65776e96fd7404786a6a3bf703697b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfqa2XZI7DraE8jsEZSaiJnABAUyuedE2X9Ynz3srP4pghJAA/formResponse
+--- !u!1 &2080551271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080551272}
+  m_Layer: 0
+  m_Name: respawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080551272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080551271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.66, y: 0.28, z: -0.06181748}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2087479572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,3 +1175,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   waitSecond: 1
+  startpoint: {fileID: 2080551271}
+  Player: {fileID: 2000718938}
