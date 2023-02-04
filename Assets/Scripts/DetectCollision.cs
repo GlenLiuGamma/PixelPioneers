@@ -7,6 +7,7 @@ public class DetectCollision : MonoBehaviour
 
     public GameObject startpoint;
     public GameObject Player;
+    public static bool isDead = false;
     // Start is called before the first frame update
 
      private void Start() {
@@ -27,6 +28,7 @@ public class DetectCollision : MonoBehaviour
 
     private void Die() {
          Debug.Log("The player is dead");
+         isDead = true;
          GameEvent.current.DeathTriggerCount();
          Player.transform.position = startpoint.transform.position;
          
