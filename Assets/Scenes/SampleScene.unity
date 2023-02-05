@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfqa2XZI7DraE8jsEZSaiJnABAUyuedE2X9Ynz3srP4pghJAA/formResponse
-  _deathCount: {fileID: 0}
+  _deathCount: {fileID: 1193688876}
 --- !u!1 &1552057483
 GameObject:
   m_ObjectHideFlags: 0

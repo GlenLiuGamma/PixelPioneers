@@ -62,49 +62,7 @@ public class PlayerMovement : MonoBehaviour
             movement();
         }
          
-        if (Input.GetKeyDown("c")) {
-            if (switchable) {
-                if (mode) {
-                    moveSpeed = 7f;
-                    sr.color = Color.red;
-                    mode = false;
-                }
-                // else if (mode == false) -> else ?
-                else if (mode == false) {  
-                    change_Form_Times -= 1;
-                    moveSpeed = RunningSpeed;
-                    sr.color = Color.blue;
-                    mode = true;
-                    
-                }
-            } else {
-                info.text = "Still cooling down, hang on ";
-                Debug.Log("Still cooling down, hang on ");
-            }
-
-        } else {
-            if (mode == true){
-                ability_countdown -= 1 * Time.deltaTime;
-                if (ability_countdown < 0) {
-                    switchable = false;
-                    move = false;
-                    mode = false;
-                    sr.color = Color.red;
-                }
-            } else {
-                is_cooldown = true;
-                cooldown_countdown -= 1 * Time.deltaTime;
-                if (cooldown_countdown < 0) {
-                    info.text = ("You are good to go!");
-                    Debug.Log("You are good to go!");
-                    switchable = true;
-                    move = true;
-                    ability_countdown = 5f;
-                    cooldown_countdown = 5f;
-                    is_cooldown = false;
-                }
-            }
-        }
+        completeForm1();
         completeForm0();
         completeForm2();
         playerDead();
@@ -123,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     // change gravity form
     void completeForm2(){
         
-        if(Input.GetKeyDown("2") && change_Form_Times > 0 && form != 2){
+        if(Input.GetKeyDown("2") && change_Form_Times > 0 && form != 2 && switchable == true){
             form = 2;
             change_Form_Times -= 1;
             power.text = "Power Left: " + change_Form_Times;
@@ -143,6 +101,51 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    void completeForm1() {
+        if (Input.GetKeyDown("1")) {
+            if (switchable) {
+                if (form == 0) {  
+                    change_Form_Times -= 1;
+                    moveSpeed = RunningSpeed;
+                    sr.color = Color.blue;
+                    form = 1;;
+                    
+                }
+            } else {
+                info.text = "Still cooling down, hang on ";
+                Debug.Log("Still cooling down, hang on ");
+            }
+
+        } else {
+            if (form == 1){
+                ability_countdown -= 1 * Time.deltaTime;
+                if (ability_countdown < 0) {
+                    switchable = false;
+                    move = false;
+                    form = 0;
+                    sr.color = Color.red;
+                }
+            } else {
+                is_cooldown = true;
+                cooldown_countdown -= 1 * Time.deltaTime;
+                if (cooldown_countdown < 0) {
+                    info.text = ("You are good to go!");
+                    Debug.Log("You are good to go!");
+                    switchable = true;
+                    move = true;
+                    ability_countdown = 5f;
+                    cooldown_countdown = 5f;
+                    is_cooldown = false;
+                }
+            }
+        }
+
+
+
+
+
     }
 
     // default form
