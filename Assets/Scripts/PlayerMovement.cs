@@ -104,10 +104,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void completeForm1() {
-        if (Input.GetKeyDown("1")) {
+        if (Input.GetKeyDown("1") && change_Form_Times > 0) {
             if (switchable) {
                 if (form == 0) {  
                     change_Form_Times -= 1;
+                    power.text = "Power Left: " + change_Form_Times;
                     moveSpeed = RunningSpeed;
                     sr.color = Color.blue;
                     form = 1;;
@@ -141,11 +142,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
-
-
-
-
     }
 
     // default form
