@@ -94,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     // change gravity form
-<<<<<<< HEAD
     void completeForm2(){
         if(Input.GetKeyDown("2") && change_Form_Times > 0 && form != 2 && switchable == true){
             GameEvent.current.ChangeCharacterTrigger();
@@ -124,7 +123,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
     void completeForm1() {
         
         if (Input.GetKeyDown("1") && change_Form_Times > 0) {
@@ -178,7 +176,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // default form
-<<<<<<< HEAD
     void completeForm0(){
         
         if(Input.GetKeyDown("0") && form != 0){
