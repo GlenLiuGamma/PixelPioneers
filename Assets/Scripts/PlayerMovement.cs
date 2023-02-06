@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     void Start()
     {
+        GameEvent.current.ChangeCharacter += onPlayerChangeCharacter;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
@@ -52,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("The game is set");        
     }
 
+    private void onPlayerChangeCharacter() {
+        Debug.Log("Changing the character");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -80,8 +84,8 @@ public class PlayerMovement : MonoBehaviour
     }
     // change gravity form
     void completeForm2(){
-        
         if(Input.GetKeyDown("2") && change_Form_Times > 0 && form != 2 && switchable == true){
+            GameEvent.current.ChangeCharacterTrigger();
             form = 2;
             change_Form_Times -= 1;
             power.text = "Power Left: " + change_Form_Times;
@@ -104,7 +108,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void completeForm1() {
+        
         if (Input.GetKeyDown("1") && change_Form_Times > 0) {
+            GameEvent.current.ChangeCharacterTrigger();
             if (switchable) {
                 if (form == 0) {  
                     change_Form_Times -= 1;
@@ -146,7 +152,9 @@ public class PlayerMovement : MonoBehaviour
 
     // default form
     void completeForm0(){
+        
         if(Input.GetKeyDown("0") && form != 0){
+            GameEvent.current.ChangeCharacterTrigger();
             form = 0;
             if(rb.gravityScale < 0){
                 rb.gravityScale *= -1;
