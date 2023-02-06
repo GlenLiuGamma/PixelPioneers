@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // normal: 0, running fast: 1, change gravity: 2
     private int form = 0;
     // the player can change his forms twice
-    public static int change_Form_Times = 99;
+    public static int change_Form_Times = 5;
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float RunningSpeed = 20f;
     [SerializeField] private float moveSpeed = 14f;
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (DetectCollision.isDead)
         {
-            change_Form_Times = 99;
+            change_Form_Times = 5;
             power.text = "Power Left: " + change_Form_Times;
             form = 0;
             DetectCollision.isDead = false;
