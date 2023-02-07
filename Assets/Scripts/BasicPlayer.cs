@@ -12,15 +12,17 @@ public class BasicPlayer : MonoBehaviour
     [SerializeField] private float moveSpeed = 14f;
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private LayerMask ground;
-    [SerializeField] private LayerMask[] DeadLayers;
-
-    public GameObject startpoint;
+    [SerializeField] private List<LayerMask>  DeadLayers;
     
+    public GameObject startpoint;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
+        ground = LayerMask.GetMask("terrain");
+        DeadLayers.Add(LayerMask.GetMask("Water"));
     }
     // Update is called once per frame
 
@@ -39,7 +41,7 @@ public class BasicPlayer : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
-    private void CheckStandingOn(LayerMask [] DeadLayers){
+    private void CheckStandingOn(List<LayerMask> DeadLayers){
         foreach (LayerMask layer in DeadLayers){
             if (IsStandingOn(layer)){
                 Die();

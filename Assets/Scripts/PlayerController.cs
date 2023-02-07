@@ -6,10 +6,11 @@ public class PlayerController : MonoBehaviour
 {
 
     public GameObject player;
+    private string[] playerList = { "BasicPlayer", "AntiGravityPlayer" };
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -20,11 +21,24 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchPlayer()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if ( Input.GetKeyDown(KeyCode.Z))
         {
-            Instantiate(player);
-            //this will add multiple scripts
+            Debug.Log("Pressed Z");
+            DestroyAll();
             player.AddComponent<BasicPlayer>();
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log("Pressed X");
+            DestroyAll();
+            player.AddComponent<AntiGravityPlayer>();
+        }
+    }
+    private void DestroyAll()
+    {
+        foreach(string playerType in playerList)
+        {
+            Destroy(player.GetComponent(playerType));
         }
     }
 }

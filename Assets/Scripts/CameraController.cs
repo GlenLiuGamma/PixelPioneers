@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     private Transform player;
     //should fix in future
-    private string PLAYER_NAME = "player(Clone)";
+    private string PLAYER_NAME = "player";
     // Update is called once per frame
     void LateUpdate()
     {
