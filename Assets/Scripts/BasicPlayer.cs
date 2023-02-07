@@ -5,14 +5,14 @@ using UnityEngine;
 public class BasicPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
-    private BoxCollider2D coll;
-    private float dirX = 0f;
-    [SerializeField] private float moveSpeed = 14f;
-    [SerializeField] private float jumpForce = 7f;
-    [SerializeField] private LayerMask ground;
-    [SerializeField] private List<LayerMask>  DeadLayers;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer sr;
+    protected BoxCollider2D coll;
+    protected float dirX = 0f;
+    [SerializeField] protected float moveSpeed = 14f;
+    [SerializeField] protected float jumpForce = 7f;
+    [SerializeField] protected LayerMask ground;
+    [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
     
     public GameObject startpoint;
 
@@ -22,17 +22,27 @@ public class BasicPlayer : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
         ground = LayerMask.GetMask("terrain");
+        startpoint = GameObject.Find("respawn");
+        AddDeadLayers();
+        InitializeParameters();
+    }
+
+    protected virtual void AddDeadLayers(){
         DeadLayers.Add(LayerMask.GetMask("Water"));
     }
     // Update is called once per frame
 
+    protected virtual void InitializeParameters(){
+        rb.gravityScale = 1;
+    }
+    
     void Update()
     {
         Movement();
         CheckStandingOn(DeadLayers);
     }
 
-    void Movement(){
+    protected virtual void Movement(){
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
         // player can jumps or changes his gravity only when he touches the ground 
@@ -55,7 +65,7 @@ public class BasicPlayer : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 1f, layer);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Trap") || other.gameObject.CompareTag("Water")){
             Die();

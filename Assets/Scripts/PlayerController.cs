@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public GameObject player;
-    private string[] playerList = { "BasicPlayer", "AntiGravityPlayer" };
+    private string[] playerList = { "BasicPlayer", "DashPlayer","AntiGravityPlayer" };
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,12 @@ public class PlayerController : MonoBehaviour
             player.AddComponent<BasicPlayer>();
         }
         if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log("Pressed X");
+            DestroyAll();
+            player.AddComponent<DashPlayer>();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("Pressed X");
             DestroyAll();
