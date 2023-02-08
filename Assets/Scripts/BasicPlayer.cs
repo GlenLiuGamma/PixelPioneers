@@ -5,6 +5,12 @@ using UnityEngine;
 public class BasicPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
+    protected string GROUND_LAYER = "Ground";
+    protected string WATER_LAYER = "Water";
+    protected string WATER_TAG = "Water";
+    protected string TRAP_TAG = "Trap";
+    protected string RESPAWN = "respawn";
+
     protected Rigidbody2D rb;
     protected SpriteRenderer sr;
     protected BoxCollider2D coll;
@@ -24,14 +30,14 @@ public class BasicPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
-        ground = LayerMask.GetMask("terrain");
-        startpoint = GameObject.Find("respawn");
+        ground = LayerMask.GetMask(GROUND_LAYER);
+        startpoint = GameObject.Find(RESPAWN);
         AddDeadLayers();
         InitializeParameters();
     }
 
     protected virtual void AddDeadLayers(){
-        DeadLayers.Add(LayerMask.GetMask("Water"));
+        DeadLayers.Add(LayerMask.GetMask(WATER_LAYER));
     }
     // Update is called once per frame
 
@@ -71,7 +77,7 @@ public class BasicPlayer : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Trap") || other.gameObject.CompareTag("Water")){
+        if (other.gameObject.CompareTag(TRAP_TAG) || other.gameObject.CompareTag(WATER_TAG)){
             Die();
         }
     }

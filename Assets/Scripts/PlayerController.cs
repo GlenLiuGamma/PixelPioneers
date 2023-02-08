@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public GameObject player; 
+    protected string PLAYER_NAME = "player";
+    private GameObject player; 
     [SerializeField] private KeyCode[] keys = {KeyCode.Z, KeyCode.X, KeyCode.C};
     [SerializeField] private HashSet<KeyCode> enableKeys = new HashSet<KeyCode>();
     private string[] playerList = { "BasicPlayer", "DashPlayer","AntiGravityPlayer" };
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        player = GameObject.Find(PLAYER_NAME);
         player.AddComponent<BasicPlayer>();
         isBasicPlayer = true;
         timeLeftDisplay = GameObject.Find("TimeLeft").GetComponent<Text>();
