@@ -13,4 +13,9 @@ public class AntiGravityPlayer : BasicPlayer
             rb.gravityScale *= -1;
         }
     }
+    protected override void InitializeParameters()
+    {
+        rb.gravityScale = 8;
+        sr.color = Color.yellow;
+    }
 }

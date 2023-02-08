@@ -37,6 +37,7 @@ public class BasicPlayer : MonoBehaviour
 
     protected virtual void InitializeParameters(){
         rb.gravityScale = 8;
+        sr.color = Color.white;
     }
 
     void Update()
@@ -74,7 +75,7 @@ public class BasicPlayer : MonoBehaviour
             Die();
         }
     }
-    private void Die(){
+    protected void Die(){
         transform.position = startpoint.transform.position;
         onGameOver?.Invoke();
     }

@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (!isBasicPlayer){
             timeLeft-= 1 * Time.deltaTime;
         }
-        if(timeLeft <= 0){
+        if(timeLeft < 0){
             timeLeft = 0;
             isBasicPlayer = true;
             DestroyAll();
