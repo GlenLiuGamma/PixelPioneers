@@ -69,5 +69,20 @@ public class PlayerController : MonoBehaviour
             Destroy(player.GetComponent(playerType));
         }
     }
-    
+
+    void RestartGame()
+    { 
+        timeLeft = 10f;
+        isBasicPlayer = true;
+        DestroyAll();
+        player.AddComponent<BasicPlayer>();
+    }
+    private void OnEnable()
+    {
+        BasicPlayer.onGameOver += RestartGame;
+    }
+    private void OnDisable()
+    {
+        BasicPlayer.onGameOver -= RestartGame;
+    }
 }

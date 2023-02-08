@@ -10,10 +10,13 @@ public class BasicPlayer : MonoBehaviour
     protected BoxCollider2D coll;
     protected float dirX = 0f;
     [SerializeField] protected float moveSpeed = 14f;
-    [SerializeField] protected float jumpForce = 7f;
+    [SerializeField] protected float jumpForce = 30f;
     [SerializeField] protected LayerMask ground;
     [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
     
+    public delegate void OnGameOver();
+    public static OnGameOver onGameOver;
+
     public GameObject startpoint;
 
     void Start()
@@ -33,9 +36,9 @@ public class BasicPlayer : MonoBehaviour
     // Update is called once per frame
 
     protected virtual void InitializeParameters(){
-        rb.gravityScale = 1;
+        rb.gravityScale = 8;
     }
-    
+
     void Update()
     {
         Movement();
@@ -73,6 +76,7 @@ public class BasicPlayer : MonoBehaviour
     }
     private void Die(){
         transform.position = startpoint.transform.position;
+        onGameOver?.Invoke();
     }
 
 }
