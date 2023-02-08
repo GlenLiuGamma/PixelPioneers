@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    public GameObject player;
+    public GameObject player; 
+    [SerializeField] private KeyCode[] keys = {KeyCode.Z, KeyCode.X, KeyCode.C};
+    [SerializeField] private HashSet<KeyCode> enableKeys = new HashSet<KeyCode>();
     private string[] playerList = { "BasicPlayer", "DashPlayer","AntiGravityPlayer" };
     private bool isBasicPlayer = true;
     private float timeLeft = 10f;
@@ -14,6 +16,11 @@ public class PlayerController : MonoBehaviour
     private GameObject dashPlayerUI;
     private GameObject antigravityPlayerUI;
     // Start is called before the first frame update
+    void Awake(){
+        foreach(KeyCode key in keys){
+            enableKeys.Add(key);
+        }
+    }
     void Start()
     {
         player.AddComponent<BasicPlayer>();
@@ -34,21 +41,21 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchPlayer()
     {
-        if ( Input.GetKeyDown(KeyCode.Z))
+        if ( enableKeys.Contains(KeyCode.Z) && Input.GetKeyDown(KeyCode.Z))
         {
             isBasicPlayer = true;
             Debug.Log("Pressed Z");
             DestroyAll();
             player.AddComponent<BasicPlayer>();
         }
-        if (timeLeft > 0 && Input.GetKeyDown(KeyCode.X))
+        if (timeLeft > 0 && enableKeys.Contains(KeyCode.X) && Input.GetKeyDown(KeyCode.X))
         {
             isBasicPlayer = false;
             Debug.Log("Pressed X");
             DestroyAll();
             player.AddComponent<DashPlayer>();
         }
-        if (timeLeft > 0 && Input.GetKeyDown(KeyCode.C))
+        if (timeLeft > 0 && enableKeys.Contains(KeyCode.C) && Input.GetKeyDown(KeyCode.C))
         {
             isBasicPlayer = false;
             Debug.Log("Pressed C");
@@ -105,3 +112,4 @@ public class PlayerController : MonoBehaviour
         BasicPlayer.onGameOver -= RestartGame;
     }
 }
+

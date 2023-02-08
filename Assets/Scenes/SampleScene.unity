@@ -9032,6 +9032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 389110563}
+  keys: 7a0000007800000063000000
 --- !u!4 &1970985349
 Transform:
   m_ObjectHideFlags: 0
