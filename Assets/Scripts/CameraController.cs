@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-   [SerializeField] private Transform player;
-
+    private Transform playerTransform;
+    //should fix in future
+    private string PLAYER_NAME = "player";
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+
+        playerTransform = GameObject.Find(PLAYER_NAME).transform; 
+        transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y + 8f, transform.position.z);
     }
 }
