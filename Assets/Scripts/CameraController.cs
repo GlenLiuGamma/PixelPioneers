@@ -12,6 +12,6 @@ public class CameraController : MonoBehaviour
     {
 
         playerTransform = GameObject.Find(PLAYER_NAME).transform; 
-        transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, transform.position.z);
+        transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y + 8f, transform.position.z);
     }
 }

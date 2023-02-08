@@ -9,7 +9,7 @@ public class BasicPlayer : MonoBehaviour
     protected SpriteRenderer sr;
     protected BoxCollider2D coll;
     protected float dirX = 0f;
-    [SerializeField] protected float moveSpeed = 14f;
+    [SerializeField] protected float moveSpeed = 16f;
     [SerializeField] protected float jumpForce = 30f;
     [SerializeField] protected LayerMask ground;
     [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
