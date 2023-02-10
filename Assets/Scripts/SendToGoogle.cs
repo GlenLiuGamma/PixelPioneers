@@ -28,9 +28,9 @@ public class SendToGoogle : MonoBehaviour
     Debug.Log("In the script");
     WWWForm form = new WWWForm();
     form.AddField("entry.1277992947", sessionID);
-    form.AddField("entry.1776729504", DeathCnt);
-    form.AddField("entry.909550211", time);
-    form.AddField("entry.299018717", AmtofChange);
+    form.AddField("entry.1776729504", AmtofChange);
+    form.AddField("entry.299018717", time);
+    form.AddField("entry.909550211", DeathCnt);
     // Send responses and verify result
     using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
     {
@@ -48,21 +48,21 @@ public class SendToGoogle : MonoBehaviour
     public void Send()
     {
      StartCoroutine(Post(_sessionID.ToString(),  _eventCount.Deathcnt.ToString(), Time.time.ToString(), _eventCount.AmtofChange.ToString() ));
-     #if UNITY_EDITOR
+     /* #if UNITY_EDITOR
      UnityEditor.EditorApplication.isPlaying = false;
      #endif
-     Application.Quit();
+     Application.Quit(); */
     }
    
 
     // Update is called once per frame
     void Update()
     {
-         if (_eventCount.finish == true)
+        /*  if (_eventCount.finish == true)
         {
             Send();
             //QuitGame();
-        } 
+        }  */
     }
 
     void OnApplicationQuit() {

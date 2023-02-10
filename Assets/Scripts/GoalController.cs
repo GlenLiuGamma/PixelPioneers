@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GoalController : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] private SendToGoogle stg;
     void Start()
     {
         
@@ -19,6 +20,7 @@ public class GoalController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            stg.Send();
             SceneManager.LoadScene("GameOver");
         }
     }
