@@ -17,12 +17,14 @@
 
    - GameObjects
 
-   1. MainCamera
-   2. PlayerController
-   3. player
-   4. Canvas
-      - drag MainCamera to "Render Camera"
-   5. respawn
+      1. MainCamera
+      2. PlayerController
+      3. player
+      4. Canvas
+         - drag MainCamera to "Render Camera"
+      5. respawn
+      6. FallDetector_Top & FallDetector_Bottom
+      7. Goal
 
    - Please don't override prefab object
 

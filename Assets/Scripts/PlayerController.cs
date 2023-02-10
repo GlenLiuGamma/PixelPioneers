@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     private void UpdateTime(){
-        timeLeftDisplay.text = ((int)timeLeft).ToString();
+        timeLeftDisplay.text = Mathf.CeilToInt(timeLeft).ToString();
         if (!isBasicPlayer){
             timeLeft-= 1 * Time.deltaTime;
         }
