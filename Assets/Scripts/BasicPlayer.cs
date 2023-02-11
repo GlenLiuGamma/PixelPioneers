@@ -20,10 +20,13 @@ public class BasicPlayer : MonoBehaviour
     [SerializeField] protected LayerMask ground;
     [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
     
+    
+    
     public delegate void OnGameOver();
     public static OnGameOver onGameOver;
 
     public GameObject startpoint;
+    public GameObject game_manager;
 
     void Start()
     {
@@ -32,6 +35,8 @@ public class BasicPlayer : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         ground = LayerMask.GetMask(GROUND_LAYER);
         startpoint = GameObject.Find(RESPAWN);
+        game_manager = GameObject.Find("GameManager");
+
         AddDeadLayers();
         InitializeParameters();
     }
@@ -83,6 +88,8 @@ public class BasicPlayer : MonoBehaviour
     }
     protected void Die(){
         transform.position = startpoint.transform.position;
+        SendToGoogle stg = game_manager.GetComponent<SendToGoogle>();
+        stg.Send();
         onGameOver?.Invoke();
     }
 

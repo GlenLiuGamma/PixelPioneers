@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 1193688878}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Gamemanager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8305,6 +8305,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3409027098808691319, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
+      propertyPath: stg
+      value: 
+      objectReference: {fileID: 1193688878}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
 --- !u!1001 &4765444182916509237
