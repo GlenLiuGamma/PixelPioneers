@@ -8,6 +8,7 @@ TagManager:
   - Trap
   - Water
   - Gamemanager
+  - Bound
   layers:
   - Default
   - TransparentFX

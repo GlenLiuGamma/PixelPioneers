@@ -20,7 +20,10 @@ public class GoalController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            stg.Send();
+            string DeathReason = "Goal";
+            string GoalPosition = "Goal";
+            string CurrentCharacter = "Goal";
+            stg.Send(DeathReason, GoalPosition, CurrentCharacter);
             SceneManager.LoadScene("GameOver");
         }
     }

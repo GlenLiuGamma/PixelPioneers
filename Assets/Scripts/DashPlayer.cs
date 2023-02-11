@@ -16,9 +16,10 @@ public class DashPlayer : BasicPlayer
     }
     protected override void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Trap"))
+        if (other.gameObject.CompareTag("Bound"))
         {
-            Die();
+            string DeathReason = BOUND_TAG;
+            Die(DeathReason);
         }
     }
     protected override void AddDeadLayers()

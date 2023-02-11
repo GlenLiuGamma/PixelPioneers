@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private HashSet<KeyCode> enableKeys = new HashSet<KeyCode>();
     private string[] playerList = { "BasicPlayer", "DashPlayer","AntiGravityPlayer" };
     private bool isBasicPlayer = true;
-    private float timeLeft = 10f;
+    public float timeLeft = 10f;
     private Text timeLeftDisplay;
     private GameObject dashPlayerUI;
     private GameObject antigravityPlayerUI;

@@ -9,6 +9,7 @@ public class BasicPlayer : MonoBehaviour
     protected string WATER_LAYER = "Water";
     protected string WATER_TAG = "Water";
     protected string TRAP_TAG = "Trap";
+    protected string BOUND_TAG = "Bound";
     protected string RESPAWN = "respawn";
 
     protected Rigidbody2D rb;
@@ -27,6 +28,7 @@ public class BasicPlayer : MonoBehaviour
 
     public GameObject startpoint;
     public GameObject game_manager;
+
 
     void Start()
     {
@@ -69,7 +71,7 @@ public class BasicPlayer : MonoBehaviour
     private void CheckStandingOn(List<LayerMask> DeadLayers){
         foreach (LayerMask layer in DeadLayers){
             if (IsStandingOn(layer)){
-                Die();
+                Die(WATER_TAG);
                 break;
             }
         }
@@ -82,14 +84,48 @@ public class BasicPlayer : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag(TRAP_TAG) || other.gameObject.CompareTag(WATER_TAG)){
-            Die();
+       
+        if (other.gameObject.CompareTag(TRAP_TAG)){
+            string DeathReason = "";   
+            DeathReason = TRAP_TAG;
+            Debug.Log(DeathReason);
+            Die(DeathReason);
+        }
+        else if (other.gameObject.CompareTag(WATER_TAG)){
+             string DeathReason = "";   
+            DeathReason = WATER_TAG;
+            Debug.Log(DeathReason);
+            Die(DeathReason);
+        }
+        else if (other.gameObject.CompareTag(BOUND_TAG)) {
+            string DeathReason = "";   
+            DeathReason = BOUND_TAG;
+            Debug.Log(DeathReason);
+            Die(DeathReason);
         }
     }
-    protected void Die(){
-        transform.position = startpoint.transform.position;
+
+    protected void Die(string DeathReason){
+        
+
+        //string DeathReason = "";water, detected by the tower, out of bound
+        string DeathPosition = transform.position.x.ToString();
+        string DeathCharacter = "";
+        if (sr.color == Color.white){
+            DeathCharacter = "BasicPlayer";
+        }
+        else if (sr.color == Color.blue){
+            DeathCharacter = "DashPlayer";
+        }
+        else if (sr.color == Color.yellow){
+            DeathCharacter = "AntiGravityPlayer";
+        }
+        
         SendToGoogle stg = game_manager.GetComponent<SendToGoogle>();
-        stg.Send();
+        GameEvent game_event = game_manager.GetComponent<GameEvent>();
+        game_event.Deathcnt += 1;
+        stg.Send(DeathPosition, DeathReason, DeathCharacter);
+        transform.position = startpoint.transform.position;
         onGameOver?.Invoke();
     }
 
