@@ -95,14 +95,19 @@ public class PlayerController : MonoBehaviour
             Destroy(player.GetComponent(playerType));
         }
     }
-
-    void RestartGame()
-    { 
+    IEnumerator WaitToStartGame()
+    {
+        ResetUIColor();
         timeLeft = 10f;
         isBasicPlayer = true;
         DestroyAll();
+        yield return new WaitForSecondsRealtime(0.01f);
         player.AddComponent<BasicPlayer>();
-        ResetUIColor();
+        
+    }
+    void RestartGame()
+    { 
+        StartCoroutine(WaitToStartGame());
     }
     private void OnEnable()
     {
