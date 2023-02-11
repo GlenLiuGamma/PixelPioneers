@@ -43,7 +43,9 @@ public class SendToGoogle : MonoBehaviour
     {
     Debug.Log("Form upload complete!");
     }
+    www.Dispose();
     }
+    
     }
     public void Send()
     {
