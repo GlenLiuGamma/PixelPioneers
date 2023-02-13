@@ -5,6 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - goal
+  - Trap
+  - Water
+  - Gamemanager
+  - Bound
+  - Jump
+  - LongRiver
+  - Time
+  - DashBox
+  - Spike
+  - Goal_Tutorial2
+  - Goal_Tutorial1
+  - Goal_Level1
+  - Antigravity
   layers:
   - Default
   - TransparentFX
@@ -13,7 +26,7 @@ TagManager:
   - Water
   - UI
   - Tower
-  - 
+  - Ground
   - 
   - 
   - 
@@ -39,6 +52,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI
+    uniqueID: 1318051655
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

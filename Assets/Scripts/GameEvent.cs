@@ -22,8 +22,8 @@ public class GameEvent : MonoBehaviour
     {
         if (Death != null)
         {
-            Debug.Log("Death count is " + Deathcnt);
             Deathcnt += 1;
+            Debug.Log("Death count is " + Deathcnt);
             Death();
         }
     }
@@ -31,8 +31,8 @@ public class GameEvent : MonoBehaviour
      public void ChangeCharacterTrigger() {
         if (ChangeCharacter != null)
         {
-            Debug.Log("number of changing character is : " + AmtofChange);
             AmtofChange += 1;
+            Debug.Log("number of changing character is : " + AmtofChange);
             ChangeCharacter();
         }
     } 
