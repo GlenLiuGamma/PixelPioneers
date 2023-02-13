@@ -107,7 +107,6 @@ public class BasicPlayer : MonoBehaviour
 
     protected void Die(string DeathReason){
         
-
         //string DeathReason = "";water, detected by the tower, out of bound
         string DeathPosition = transform.position.x.ToString();
         string DeathCharacter = "";

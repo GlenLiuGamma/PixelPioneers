@@ -9,6 +9,9 @@ TagManager:
   - Water
   - Gamemanager
   - Bound
+  - Goal_Level1
+  - Goal_Tutorial1
+  - Goal_Tutorial2
   layers:
   - Default
   - TransparentFX

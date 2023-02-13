@@ -3633,6 +3633,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fcab08efd3a347e6950daa81e59f38e, type: 3}
+--- !u!1 &659820096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2355183734062970168, guid: 1fcab08efd3a347e6950daa81e59f38e, type: 3}
+  m_PrefabInstance: {fileID: 659820095}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &659820097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659820096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28b5444c2abf4e9a97004b52d5275c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stg: {fileID: 1340283067}
 --- !u!1001 &1161628046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3863,7 +3881,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3409027098808691315, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
       propertyPath: m_Name
-      value: Goal
+      value: Goal_Tutorial2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409027098808691315, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
+      propertyPath: m_TagString
+      value: Goal_Tutorial2
       objectReference: {fileID: 0}
     - target: {fileID: 3409027098808691317, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
       propertyPath: m_RootOrder
@@ -3921,7 +3943,8 @@ PrefabInstance:
       propertyPath: stg
       value: 
       objectReference: {fileID: 1340283067}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3409027098808691319, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
 --- !u!1001 &2030448019
 PrefabInstance:

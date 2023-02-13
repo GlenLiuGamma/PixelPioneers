@@ -20,6 +20,9 @@ public class DashPlayer : BasicPlayer
         {
             string DeathReason = BOUND_TAG;
             Die(DeathReason);
+        } else if (other.gameObject.CompareTag("Trap")){
+            string DeathReason = TRAP_TAG;
+            Die(DeathReason);
         }
     }
     protected override void AddDeadLayers()

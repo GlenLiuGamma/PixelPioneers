@@ -290,6 +290,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2355183734062970168, guid: 1fcab08efd3a347e6950daa81e59f38e, type: 3}
   m_PrefabInstance: {fileID: 2355183733879385627}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &389110568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389110563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28b5444c2abf4e9a97004b52d5275c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stg: {fileID: 1193688878}
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6042042607751004333, guid: 0b90c50c9aceb478abb2f57c305e7578, type: 3}
@@ -418,7 +431,7 @@ GameObject:
   - component: {fileID: 726292265}
   - component: {fileID: 726292264}
   - component: {fileID: 726292263}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Box (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +1005,7 @@ GameObject:
   - component: {fileID: 1848832214}
   - component: {fileID: 1848832213}
   - component: {fileID: 1848832216}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,7 +1607,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3409027098808691315, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
       propertyPath: m_Name
-      value: Goal
+      value: Goal_Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409027098808691315, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
+      propertyPath: m_TagString
+      value: Goal_Level1
       objectReference: {fileID: 0}
     - target: {fileID: 3409027098808691317, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
       propertyPath: m_RootOrder
@@ -1644,7 +1661,12 @@ PrefabInstance:
       propertyPath: stg
       value: 
       objectReference: {fileID: 1193688878}
-    m_RemovedComponents: []
+    - target: {fileID: 3409027098808691319, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3409027098808691319, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 17a3feb94def64d1e9fb5b0db52728fb, type: 3}
 --- !u!1001 &4765444182916509237
 PrefabInstance:
