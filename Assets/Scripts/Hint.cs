@@ -7,7 +7,6 @@ public class Hint : MonoBehaviour
     public Text dialogueText;
     public bool playerIsClose;
 
-
     // Update is called once per frame
     void Update()
     {
@@ -38,11 +37,14 @@ public class Hint : MonoBehaviour
         }else if(other.CompareTag("Spike")){
             playerIsClose = true;
             dialogueText.text = "Spikes hurt all characters!";
+        }else if(other.CompareTag("Antigravity")){
+            playerIsClose = true;
+            dialogueText.text = "It’s so high~ Switch to antigravity player, and press space to change gravity";
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.CompareTag("Jump") || other.CompareTag("LongRiver") || other.CompareTag("Time") || other.CompareTag("DashBox") || other.CompareTag("Spike")){
+        if(other.CompareTag("Jump") || other.CompareTag("LongRiver") || other.CompareTag("Time") || other.CompareTag("DashBox") || other.CompareTag("Spike") || other.CompareTag("Antigravity")){
             playerIsClose = false;
             zeroText();
         }
