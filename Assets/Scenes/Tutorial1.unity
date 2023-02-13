@@ -12643,7 +12643,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spikes
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3277636142952330893, guid: 200d6d3e1535d447cadaee0bc8b70c54, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 200d6d3e1535d447cadaee0bc8b70c54, type: 3}
 --- !u!4 &1721684144 stripped
 Transform:

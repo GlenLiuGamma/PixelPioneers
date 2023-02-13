@@ -30,7 +30,7 @@ public class Hint : MonoBehaviour
             dialogueText.text = "Can’t jump over! Switch to Dash Player~";
         }else if(other.CompareTag("Time")){
             playerIsClose = true;
-            dialogueText.text = "Keep track of time Switch back to default player";
+            dialogueText.text = "Keep track of time Switch back to Default Player";
         }else if(other.CompareTag("DashBox")){
             playerIsClose = true;
             dialogueText.text = "Dash through the boxes!";
@@ -39,7 +39,7 @@ public class Hint : MonoBehaviour
             dialogueText.text = "Spikes hurt all characters!";
         }else if(other.CompareTag("Antigravity")){
             playerIsClose = true;
-            dialogueText.text = "It’s so high~ Switch to antigravity player, and press space to change gravity";
+            dialogueText.text = "It’s so high~ Switch to Antigravity Player, and press space to change gravity";
         }
     }
 
