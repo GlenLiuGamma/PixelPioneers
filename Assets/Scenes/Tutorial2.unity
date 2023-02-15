@@ -3941,8 +3941,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfo6zPSm44cSVfwW2VnLuhBJW6hUKjSimTWnpvmk60c03HJMw/formResponse
+  Level: Tutorial2
   _eventCount: {fileID: 1340283068}
-  player_control: {fileID: 0}
+  player_control: {fileID: 1360136310}
 --- !u!114 &1340283068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3973,6 +3974,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1360136310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8936656680030325552, guid: bb3b6d7817cc44333aa69a3f28ef1840, type: 3}
+  m_PrefabInstance: {fileID: 1436775831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1436775831
 PrefabInstance:
   m_ObjectHideFlags: 0

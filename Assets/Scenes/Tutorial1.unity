@@ -784,6 +784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 140c7b8b932ce4163ad2c0a040179956, type: 3}
+--- !u!1 &645310055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8936656680030325552, guid: bb3b6d7817cc44333aa69a3f28ef1840, type: 3}
+  m_PrefabInstance: {fileID: 1433639769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &725025760
 GameObject:
   m_ObjectHideFlags: 0
@@ -11892,8 +11897,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfo6zPSm44cSVfwW2VnLuhBJW6hUKjSimTWnpvmk60c03HJMw/formResponse
+  Level: Tutorial1
   _eventCount: {fileID: 1176613112}
-  player_control: {fileID: 0}
+  player_control: {fileID: 645310055}
 --- !u!114 &1176613112
 MonoBehaviour:
   m_ObjectHideFlags: 0
