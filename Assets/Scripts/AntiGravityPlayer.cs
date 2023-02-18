@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AntiGravityPlayer : BasicPlayer
@@ -17,5 +15,8 @@ public class AntiGravityPlayer : BasicPlayer
     {
         rb.gravityScale = 8;
         sr.color = Color.yellow;
+        BasicPlayerText.color = Color.black;
+        DashPlayerText.color = Color.black;
+        AntigravityPlayerText.color = Color.green;
     }
 }
