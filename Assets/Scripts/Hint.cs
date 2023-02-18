@@ -39,7 +39,7 @@ public class Hint : MonoBehaviour
             dialogueText.text = "Spikes hurt all characters!";
         }else if(other.CompareTag("Antigravity")){
             playerIsClose = true;
-            dialogueText.text = "It’s so high~ Switch to Antigravity Player, and press space to change gravity";
+            dialogueText.text = "Switch to Antigravity Player, and press space to change gravity";
         }
     }
 

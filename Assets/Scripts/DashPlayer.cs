@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DashPlayer : BasicPlayer
@@ -12,6 +10,9 @@ public class DashPlayer : BasicPlayer
     {
         rb.gravityScale = 8;
         sr.color = Color.blue;
+        BasicPlayerText.color = Color.black;
+        DashPlayerText.color = Color.green;
+        AntigravityPlayerText.color = Color.black;
         moveSpeed = 25f;
     }
     protected override void OnCollisionEnter2D(Collision2D other)
