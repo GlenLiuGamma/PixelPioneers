@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicPlayer : MonoBehaviour
 {
@@ -16,6 +16,10 @@ public class BasicPlayer : MonoBehaviour
     protected SpriteRenderer sr;
     protected BoxCollider2D coll;
     protected float dirX = 0f;
+
+    protected Text BasicPlayerText;
+    protected Text DashPlayerText;
+    protected Text AntigravityPlayerText;
     [SerializeField] protected float moveSpeed = 16f;
     [SerializeField] protected float jumpForce = 30f;
     [SerializeField] protected LayerMask ground;
@@ -35,6 +39,10 @@ public class BasicPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
+        BasicPlayerText = GameObject.Find("BasicPlayerText").GetComponent<Text>();
+        DashPlayerText = GameObject.Find("DashPlayerText").GetComponent<Text>();
+        AntigravityPlayerText = GameObject.Find("AntigravityPlayerText").GetComponent<Text>();
+
         ground = LayerMask.GetMask(GROUND_LAYER);
         startpoint = GameObject.Find(RESPAWN);
         game_manager = GameObject.Find("GameManager");
@@ -51,6 +59,9 @@ public class BasicPlayer : MonoBehaviour
     protected virtual void InitializeParameters(){
         rb.gravityScale = 8;
         sr.color = Color.white;
+        BasicPlayerText.color = Color.green;
+        DashPlayerText.color = Color.black;
+        AntigravityPlayerText.color = Color.black;
     }
 
     void Update()
