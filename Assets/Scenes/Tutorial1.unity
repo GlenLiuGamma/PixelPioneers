@@ -542,6 +542,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2832538742208180668, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2832538742208180670, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -550,16 +554,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -848
       objectReference: {fileID: 0}
-    - target: {fileID: 2832538742414529526, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2832538742208180668, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2832538742414529524, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2832538742414529526, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2832538743851225704, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
@@ -12749,6 +12749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfo6zPSm44cSVfwW2VnLuhBJW6hUKjSimTWnpvmk60c03HJMw/formResponse
   _eventCount: {fileID: 1176613112}
+  Level: Tutorial1
   player_control: {fileID: 0}
 --- !u!114 &1176613112
 MonoBehaviour:
