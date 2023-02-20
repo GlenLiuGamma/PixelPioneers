@@ -113,13 +113,19 @@ public class PlayerController : MonoBehaviour
     { 
         StartCoroutine(WaitToStartGame());
     }
+    void GetExtraTime(float timeBonus)
+    {
+        timeLeft += timeBonus;
+    }
     private void OnEnable()
     {
         BasicPlayer.onGameOver += RestartGame;
+        TimeReward.timeRewardDelegate += GetExtraTime;
     }
     private void OnDisable()
     {
         BasicPlayer.onGameOver -= RestartGame;
+        TimeReward.timeRewardDelegate -= GetExtraTime;
     }
 }
 

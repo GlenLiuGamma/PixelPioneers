@@ -12,7 +12,7 @@ public class rock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(rockspawn());
+        //StartCoroutine(rockspawn());
     }
 
     IEnumerator rockspawn() {
