@@ -68,9 +68,13 @@ public class PlayerController : MonoBehaviour
         timeLeftDisplay.text = Mathf.CeilToInt(timeLeft).ToString();
         if (!isBasicPlayer){
             timeLeft-= 1 * Time.deltaTime;
+            timeLeftDisplay.color = Color.red;
+        }else{
+            timeLeftDisplay.color = Color.black;
         }
         if(timeLeft < 0){
             timeLeft = 0;
+            timeLeftDisplay.color = Color.red;
             isBasicPlayer = true;
             DestroyAll();
             player.AddComponent<BasicPlayer>();
