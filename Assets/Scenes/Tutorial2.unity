@@ -5468,6 +5468,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2832538743623299021, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2832538743623299021, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 60
       objectReference: {fileID: 0}
@@ -5566,6 +5570,10 @@ PrefabInstance:
     - target: {fileID: 2832538743851225711, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2832538743910803824, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2832538743910803825, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
       propertyPath: m_LocalPosition.x
