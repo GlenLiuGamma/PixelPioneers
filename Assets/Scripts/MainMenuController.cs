@@ -8,6 +8,6 @@ public class MainMenuController : MonoBehaviour
     public void Restart()
     {
         Debug.Log("restart");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Menu");
     }
 }
