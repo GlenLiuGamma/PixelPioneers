@@ -4270,6 +4270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusTime: 1
+  _coinCount: {fileID: 1340283067}
 --- !u!70 &464728594
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4631,6 +4632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusTime: 1
+  _coinCount: {fileID: 1340283067}
 --- !u!70 &695647546
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5112,6 +5114,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2673448960632579025, guid: 624683190cc4749abb8ddfb52f1e3e0f, type: 3}
+      propertyPath: _coinCount
+      value: 
+      objectReference: {fileID: 1340283067}
     - target: {fileID: 3498513009876656246, guid: 624683190cc4749abb8ddfb52f1e3e0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 55.82
@@ -5344,6 +5350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusTime: 1
+  _coinCount: {fileID: 1340283067}
 --- !u!70 &1146848694
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5805,6 +5812,8 @@ MonoBehaviour:
   _eventCount: {fileID: 1340283068}
   Level: Tutorial2
   player_control: {fileID: 0}
+  total_coin: 0
+  coin_count: 0
 --- !u!114 &1340283068
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,12 +13,16 @@ public class SendToGoogle : MonoBehaviour
 
     // Start is called before the first frame update
     public GameObject player_control;
+    public float total_coin = 0f;
+    public int coin_count = 0;
     private void Awake()
     {
         // Assign sessionID to identify playtests
         _sessionID = DateTime.Now.Ticks;
         player_control = GameObject.Find("PlayerController");
+        total_coin = GameObject.Find("Rewards").transform.childCount;
         Debug.Log("_sessionID: " + _sessionID);
+        Debug.Log("The amount of reward is : " + total_coin);
         Debug.Log("Death Count is: " + _eventCount);
         Debug.Log("Changing character count is: " + _eventCount);
 
@@ -50,7 +54,11 @@ public class SendToGoogle : MonoBehaviour
     form.AddField("entry.69297460", DeathPosition);
     form.AddField("entry.1912151537", CurrentCharacter);
     form.AddField("entry.246051495", Level);
-
+    
+    Debug.Log("the coin collected is :" + coin_count);
+    float coin_collect_percent = coin_count/total_coin;
+    Debug.Log("collecting percent is :" + coin_collect_percent);
+    form.AddField("entry.2120772137", coin_collect_percent.ToString());
     // Send responses and verify result
     using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
     {

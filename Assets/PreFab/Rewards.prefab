@@ -147,3 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusTime: 1
+  _coinCount: {fileID: 0}
