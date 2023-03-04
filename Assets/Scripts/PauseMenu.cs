@@ -23,10 +23,15 @@ public class PauseMenu: MonoBehaviour {
         GameIsPaused = false;
     }
 
-    void Pause(){
+    public void Pause(){
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void Restart(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMenu(){
