@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
         ResetUIColor();
         timeLeft = 10f;
         isBasicPlayer = true;
-        DestroyAll();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         yield return new WaitForSecondsRealtime(0.01f);
         player.AddComponent<BasicPlayer>();
         

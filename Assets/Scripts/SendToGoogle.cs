@@ -21,6 +21,9 @@ public class SendToGoogle : MonoBehaviour
         Debug.Log("_sessionID: " + _sessionID);
         Debug.Log("Death Count is: " + _eventCount);
         Debug.Log("Changing character count is: " + _eventCount);
+        if (DataStorage.sessionID == 0) {
+            DataStorage.sessionID = _sessionID;
+        }
 
     }
 
@@ -72,7 +75,7 @@ public class SendToGoogle : MonoBehaviour
      string Timeleft = "";
      PlayerController time_left = player_control.GetComponent<PlayerController>();
      Timeleft = time_left.timeLeft.ToString();
-     StartCoroutine(Post(_sessionID.ToString(),  _eventCount.Deathcnt.ToString(), Time.time.ToString(), Timeleft, DeathReason, DeathPosition, CurrentCharacter, Level));
+     StartCoroutine(Post(DataStorage.sessionID.ToString(),  DataStorage.Deathcnt.ToString(), Time.time.ToString(), Timeleft, DeathReason, DeathPosition, CurrentCharacter, Level));
 
      /*
      1. Amount of time to switch characters - _eventCount.Timeleft

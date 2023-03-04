@@ -24,18 +24,24 @@ public class GoalController : MonoBehaviour
             string GoalPosition = "Goal_Level1";
             string CurrentCharacter = "Goal_Level1";
             stg.Send(DeathReason, GoalPosition, CurrentCharacter);
+            DataStorage.Deathcnt = 0;
+            DataStorage.sessionID = 0;
             SceneManager.LoadScene("GameOver");
         } else if(other.gameObject.CompareTag("Goal_Tutorial1")){
             string DeathReason = "Goal_Tutorial1";
             string GoalPosition = "Goal_Tutorial1";
             string CurrentCharacter = "Goal_Tutorial1";
             stg.Send(DeathReason, GoalPosition, CurrentCharacter);
+            DataStorage.Deathcnt = 0;
+            DataStorage.sessionID = 0;
             SceneManager.LoadScene("Tutorial2");
         } else if(other.gameObject.CompareTag("Goal_Tutorial2")){
             string DeathReason = "Goal_Tutorial2";
             string GoalPosition = "Goal_Tutorial2";
             string CurrentCharacter = "Goal_Tutorial2";
             stg.Send(DeathReason, GoalPosition, CurrentCharacter);
+            DataStorage.Deathcnt = 0;
+            DataStorage.sessionID = 0;
             SceneManager.LoadScene("SampleScene");
         }
     }

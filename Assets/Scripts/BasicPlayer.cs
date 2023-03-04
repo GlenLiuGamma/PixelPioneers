@@ -139,7 +139,7 @@ public class BasicPlayer : MonoBehaviour
         
         SendToGoogle stg = game_manager.GetComponent<SendToGoogle>();
         GameEvent game_event = game_manager.GetComponent<GameEvent>();
-        game_event.Deathcnt += 1;
+        DataStorage.Deathcnt += 1;
         stg.Send(DeathPosition, DeathReason, DeathCharacter);
         transform.position = startpoint.transform.position;
         onGameOver?.Invoke();
