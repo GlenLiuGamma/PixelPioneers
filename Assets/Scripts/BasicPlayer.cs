@@ -34,7 +34,7 @@ public class BasicPlayer : MonoBehaviour
     public GameObject game_manager;
     protected float timer = 0f;
 
-    protected float offset = 2f;
+    protected float offset = 0.5f;
 
     protected bool isShow;
     void Start()
