@@ -1733,6 +1733,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: timepop
       objectReference: {fileID: 0}
+    - target: {fileID: 6386737889851404053, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
+      propertyPath: m_Color.b
+      value: 0.28421575
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386737889851404053, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386737889851404053, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
+      propertyPath: m_Color.r
+      value: 0.050418302
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
 --- !u!1 &980535823
