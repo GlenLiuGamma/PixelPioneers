@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private bool isBasicPlayer = true;
     public float timeLeft = 10f;
     private Text timeLeftDisplay;
+
     private GameObject dashPlayerUI;
     private GameObject antigravityPlayerUI;
     // Start is called before the first frame update
