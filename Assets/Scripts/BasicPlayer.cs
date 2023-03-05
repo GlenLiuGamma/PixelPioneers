@@ -25,15 +25,18 @@ public class BasicPlayer : MonoBehaviour
     [SerializeField] protected LayerMask ground;
     [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
     
-    
+    protected Text timepopup;
     
     public delegate void OnGameOver();
     public static OnGameOver onGameOver;
 
     public GameObject startpoint;
     public GameObject game_manager;
+    protected float timer = 0f;
 
+    protected float offset = 2f;
 
+    protected bool isShow;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +45,9 @@ public class BasicPlayer : MonoBehaviour
         BasicPlayerText = GameObject.Find("BasicPlayerText").GetComponent<Text>();
         DashPlayerText = GameObject.Find("DashPlayerText").GetComponent<Text>();
         AntigravityPlayerText = GameObject.Find("AntigravityPlayerText").GetComponent<Text>();
+        timepopup = GameObject.Find("timepop").GetComponent<Text>();
+        timepopup.enabled = false;
+        isShow = false;
 
         ground = LayerMask.GetMask(GROUND_LAYER);
         startpoint = GameObject.Find(RESPAWN);
@@ -66,6 +72,14 @@ public class BasicPlayer : MonoBehaviour
 
     void Update()
     {
+        if (isShow) {
+            if (timer > offset) {
+                timepopup.enabled = false;
+                timer = 0f;
+            }else {
+                timer += Time.deltaTime;
+            }
+        }
         Movement();
         CheckStandingOn(DeadLayers);
     }
@@ -113,8 +127,12 @@ public class BasicPlayer : MonoBehaviour
             DeathReason = BOUND_TAG;
             Debug.Log(DeathReason);
             Die(DeathReason);
+        } else if (other.gameObject.CompareTag("time_reward")) {
+            timepopup.enabled = true;
+            isShow = true;
         }
     }
+
 
     protected void Die(string DeathReason){
         

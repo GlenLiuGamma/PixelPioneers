@@ -7,6 +7,12 @@ public class TimeReward : MonoBehaviour
     [SerializeField] private float bonusTime = 1.0f;
     public delegate void TimeRewardDelegate(float time);
     public static TimeRewardDelegate timeRewardDelegate;
+
+
+    private 
+
+
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
