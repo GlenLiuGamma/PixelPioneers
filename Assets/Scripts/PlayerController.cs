@@ -82,6 +82,9 @@ public class PlayerController : MonoBehaviour
             player.AddComponent<BasicPlayer>();
             SetUIColorToGray();
         }
+        else if (timeLeft > 0){
+            ResetUIColor();
+        }
     }
     private void SetUIColorToGray()
     {
