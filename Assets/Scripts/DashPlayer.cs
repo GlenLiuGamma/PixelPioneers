@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class DashPlayer : BasicPlayer
 { 
+
+ 
+
     protected override void Movement(){
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
@@ -24,6 +27,9 @@ public class DashPlayer : BasicPlayer
         } else if (other.gameObject.CompareTag("Trap")){
             string DeathReason = TRAP_TAG;
             Die(DeathReason);
+        }else if (other.gameObject.CompareTag("time_reward")) {
+            timepopup.enabled = true;
+            isShow = true;
         }
     }
     protected override void AddDeadLayers()
