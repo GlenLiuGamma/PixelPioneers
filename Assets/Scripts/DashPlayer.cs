@@ -11,7 +11,7 @@ public class DashPlayer : BasicPlayer
         rb.gravityScale = 8;
         sr.color = Color.blue;
         BasicPlayerText.color = Color.black;
-        DashPlayerText.color = Color.green;
+        DashPlayerText.color = Color.blue;
         AntigravityPlayerText.color = Color.black;
         moveSpeed = 25f;
     }

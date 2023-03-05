@@ -17,6 +17,6 @@ public class AntiGravityPlayer : BasicPlayer
         sr.color = Color.yellow;
         BasicPlayerText.color = Color.black;
         DashPlayerText.color = Color.black;
-        AntigravityPlayerText.color = Color.green;
+        AntigravityPlayerText.color = Color.yellow;
     }
 }
