@@ -10,7 +10,6 @@ TagManager:
   - Gamemanager
   - Bound
   - Jump
-  - LongRiver
   - Time
   - DashBox
   - Spike
@@ -18,6 +17,9 @@ TagManager:
   - Goal_Tutorial1
   - Goal_Level1
   - Antigravity
+  - dashhint
+  - antihint
+  - antihint2
   layers:
   - Default
   - TransparentFX
