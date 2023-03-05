@@ -17,6 +17,7 @@ public class Hint : MonoBehaviour
 
     public bool closeWater;
     public bool closeSpike;
+    public bool closeEdge;
 
     // Update is called once per frame
     void Update()
@@ -27,18 +28,19 @@ public class Hint : MonoBehaviour
 
             }
         }
-        if(PlayerController.isBasicPlayer && closeWater){
+        if((PlayerController.isBasicPlayer && closeWater)||closeSpike||closeEdge){
+            
             pressSpace.SetActive(true);
         }else{
             pressSpace.SetActive(false);
 
         }
-        if(closeSpike){
-            pressSpace.SetActive(true);
-        }else{
-            pressSpace.SetActive(false);
-
-        }
+        // if(closeSpike){
+        //     pressSpace.SetActive(true);
+        // }else{
+        //     // Debug.Log("hhhhhhh");
+        //     pressSpace.SetActive(false);
+        // }
         if(PlayerController.isBasicPlayer && showX){
             pressX.SetActive(true);
         }else{
@@ -56,12 +58,12 @@ public class Hint : MonoBehaviour
             pressC.SetActive(false);
 
         }
-        if(closeWater){
-            pressSpace.SetActive(true);
-        }else{
-            pressSpace.SetActive(false);
+        // if(closeWater){
+        //     pressSpace.SetActive(true);
+        // }else{
+        //     pressSpace.SetActive(false);
 
-        }
+        // }
 
     }
 
@@ -81,7 +83,7 @@ public class Hint : MonoBehaviour
             closeSpike = true;
         }else if(other.CompareTag("Antigravity")){
             playerIsClose = true;
-            closeWater = true;
+            closeEdge = true;
         }else if(other.CompareTag("dashhint")){
             playerIsClose = true;
             showX = true;
@@ -89,7 +91,7 @@ public class Hint : MonoBehaviour
             playerIsClose = true;
             showC = true;
         }else if(other.CompareTag("antihint2")){
-            closeWater = true;
+            closeEdge = true;
             playerIsClose = true;
         }
     }
@@ -101,7 +103,7 @@ public class Hint : MonoBehaviour
             showX = false;
             showRight = false;
             showC = false;
-            
+            closeEdge = false;            
             zeroText();
         }
     }
