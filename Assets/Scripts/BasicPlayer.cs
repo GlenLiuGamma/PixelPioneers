@@ -33,11 +33,15 @@ public class BasicPlayer : MonoBehaviour
     public GameObject startpoint;
     public GameObject game_manager;
 
+    protected GameObject pauseMenuUI;
+
     private Color playerTextColor = new Color(33, 105, 52);
 
 
     void Start()
     {
+        //pauseMenuUI = GameObject.Find("PauseMenu");
+        //pauseMenuUI.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
@@ -143,7 +147,11 @@ public class BasicPlayer : MonoBehaviour
         GameEvent game_event = game_manager.GetComponent<GameEvent>();
         DataStorage.Deathcnt += 1;
         stg.Send(DeathPosition, DeathReason, DeathCharacter);
-        transform.position = startpoint.transform.position;
+        //Enable pause menu scene
+        /* pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
+        pauseMenuUI.transform.Find("GameOver").transform.gameObject.SetActive(true);
+        pauseMenuUI.SetActive(true);*/
+        transform.position = startpoint.transform.position; 
         onGameOver?.Invoke();
     }
 
