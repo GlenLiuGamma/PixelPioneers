@@ -33,6 +33,8 @@ public class BasicPlayer : MonoBehaviour
     public GameObject startpoint;
     public GameObject game_manager;
 
+    private Color playerTextColor = new Color(33, 105, 52);
+
 
     void Start()
     {
@@ -59,7 +61,7 @@ public class BasicPlayer : MonoBehaviour
     protected virtual void InitializeParameters(){
         rb.gravityScale = 8;
         sr.color = Color.white;
-        BasicPlayerText.color = Color.green;
+        BasicPlayerText.color = Color.white;
         DashPlayerText.color = Color.black;
         AntigravityPlayerText.color = Color.black;
     }
