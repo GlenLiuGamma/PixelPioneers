@@ -25,7 +25,15 @@ public class BasicPlayer : MonoBehaviour
     [SerializeField] protected LayerMask ground;
     [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
     
-    
+    protected Text timepopup;
+
+    protected float timer = 0f;
+
+    protected float offset = 0.5f;
+
+    protected bool isShow;
+
+
     
     public delegate void OnGameOver();
     public static OnGameOver onGameOver;
@@ -53,6 +61,11 @@ public class BasicPlayer : MonoBehaviour
         startpoint = GameObject.Find(RESPAWN);
         game_manager = GameObject.Find("GameManager");
 
+        timepopup = GameObject.Find("timepop").GetComponent<Text>();
+        timepopup.enabled = false;
+        isShow = false;
+
+
         AddDeadLayers();
         InitializeParameters();
     }
@@ -72,6 +85,15 @@ public class BasicPlayer : MonoBehaviour
 
     void Update()
     {
+        if (isShow) {
+            if (timer > offset) {
+                timepopup.enabled = false;
+                timer = 0f;
+            }else {
+                timer += Time.deltaTime;
+            }
+        }
+
         Movement();
         CheckStandingOn(DeadLayers);
     }
@@ -119,7 +141,11 @@ public class BasicPlayer : MonoBehaviour
             DeathReason = BOUND_TAG;
             Debug.Log(DeathReason);
             Die(DeathReason);
+        } else if (other.gameObject.CompareTag("time_reward")) {
+            timepopup.enabled = true;
+            isShow = true;
         }
+
     }
 
     protected void Die(string DeathReason){

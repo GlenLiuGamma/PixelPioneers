@@ -24,7 +24,11 @@ public class DashPlayer : BasicPlayer
         } else if (other.gameObject.CompareTag("Trap")){
             string DeathReason = TRAP_TAG;
             Die(DeathReason);
+        }else if (other.gameObject.CompareTag("time_reward")) {
+            timepopup.enabled = true;
+            isShow = true;
         }
+
     }
     protected override void AddDeadLayers()
     {
