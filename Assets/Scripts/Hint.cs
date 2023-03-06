@@ -25,6 +25,7 @@ public class Hint : MonoBehaviour
         if(playerIsClose){
             if(!dialoguePanel.activeInHierarchy){
                 dialoguePanel.SetActive(true);
+                
 
             }
         }
