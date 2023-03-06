@@ -1435,6 +1435,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1022302832}
   - {fileID: 807277169}
   m_Father: {fileID: 0}
   m_RootOrder: 16
@@ -2261,7 +2262,7 @@ RectTransform:
   - {fileID: 1642607701}
   - {fileID: 457874320}
   m_Father: {fileID: 559293837}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2613,8 +2614,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2051766898}
-  m_RootOrder: 8
+  m_Father: {fileID: 559293837}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2811,8 +2812,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1099899573
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -10612,6 +10613,7 @@ MonoBehaviour:
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfo6zPSm44cSVfwW2VnLuhBJW6hUKjSimTWnpvmk60c03HJMw/formResponse
   _eventCount: {fileID: 1176613112}
   Level: Tutorial1
+  total_coin: 0
   player_control: {fileID: 0}
 --- !u!114 &1176613112
 MonoBehaviour:
