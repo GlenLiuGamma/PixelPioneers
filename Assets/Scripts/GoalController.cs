@@ -31,6 +31,7 @@ public class GoalController : MonoBehaviour
             stg.Send(DeathReason, GoalPosition, CurrentCharacter);
             DataStorage.Deathcnt = 0;
             DataStorage.sessionID = 0;
+            DataStorage.coin_count = 0;
             SceneManager.LoadScene("GameOver");//Final stage will load the GameOver Scene
         } else if(other.gameObject.CompareTag("Goal_Tutorial1")){
             Time.timeScale = 0f;
@@ -45,6 +46,7 @@ public class GoalController : MonoBehaviour
             stg.Send(DeathReason, GoalPosition, CurrentCharacter);
             DataStorage.Deathcnt = 0;
             DataStorage.sessionID = 0;
+            DataStorage.coin_count = 0;
             //SceneManager.LoadScene("Tutorial2");
         } else if(other.gameObject.CompareTag("Goal_Tutorial2")){
             Time.timeScale = 0f;
@@ -58,6 +60,7 @@ public class GoalController : MonoBehaviour
             stg.Send(DeathReason, GoalPosition, CurrentCharacter);
             DataStorage.Deathcnt = 0;
             DataStorage.sessionID = 0;
+            DataStorage.coin_count = 0;
         }
     }
 }
