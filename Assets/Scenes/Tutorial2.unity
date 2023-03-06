@@ -6467,6 +6467,7 @@ MonoBehaviour:
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfo6zPSm44cSVfwW2VnLuhBJW6hUKjSimTWnpvmk60c03HJMw/formResponse
   _eventCount: {fileID: 1340283068}
   Level: Tutorial2
+  total_coin: 0
   player_control: {fileID: 0}
 --- !u!114 &1340283068
 MonoBehaviour:
@@ -7438,7 +7439,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 634b1609324924e6ab63a427292cc82b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7919,11 +7920,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8249477082293320101, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 583.3
+      value: 578
       objectReference: {fileID: 0}
     - target: {fileID: 8249477082293320101, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 526
+      value: 420
       objectReference: {fileID: 0}
     - target: {fileID: 8249477082293320101, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

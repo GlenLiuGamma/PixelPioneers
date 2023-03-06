@@ -2238,6 +2238,7 @@ MonoBehaviour:
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfo6zPSm44cSVfwW2VnLuhBJW6hUKjSimTWnpvmk60c03HJMw/formResponse
   _eventCount: {fileID: 1193688876}
   Level: Level1
+  total_coin: 0
   player_control: {fileID: 0}
 --- !u!1 &1258626826
 GameObject:
@@ -2696,11 +2697,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8249477082293320101, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 583.3
+      value: 570
       objectReference: {fileID: 0}
     - target: {fileID: 8249477082293320101, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 526
+      value: 418
       objectReference: {fileID: 0}
     - target: {fileID: 8249477082293320101, guid: 251f9e843812b4e9696bcedf164748f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4984,6 +4985,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2832538743851225711, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e222ddca7af6f401d8c158d8a7ad60fe, type: 3}
 --- !u!224 &2832538743957011014 stripped
@@ -5485,15 +5490,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6042042607751004333, guid: 0b90c50c9aceb478abb2f57c305e7578, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.5957132
+      value: 0.627451
       objectReference: {fileID: 0}
     - target: {fileID: 6042042607751004333, guid: 0b90c50c9aceb478abb2f57c305e7578, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.3920879
+      value: 0.627451
       objectReference: {fileID: 0}
     - target: {fileID: 6042042607751004333, guid: 0b90c50c9aceb478abb2f57c305e7578, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.8396226
+      value: 0.972549
       objectReference: {fileID: 0}
     - target: {fileID: 6042042607751004334, guid: 0b90c50c9aceb478abb2f57c305e7578, type: 3}
       propertyPath: m_Name
