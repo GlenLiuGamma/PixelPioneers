@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode[] keys = {KeyCode.Z, KeyCode.X, KeyCode.C};
     [SerializeField] private HashSet<KeyCode> enableKeys = new HashSet<KeyCode>();
     private string[] playerList = { "BasicPlayer", "DashPlayer","AntiGravityPlayer" };
-    private bool isBasicPlayer = true;
+    public static bool isBasicPlayer = true;
     public float timeLeft = 10f;
     private Text timeLeftDisplay;
     private GameObject dashPlayerUI;
@@ -80,6 +81,9 @@ public class PlayerController : MonoBehaviour
             player.AddComponent<BasicPlayer>();
             SetUIColorToGray();
         }
+        else if (timeLeft > 0){
+            ResetUIColor();
+        }
     }
     private void SetUIColorToGray()
     {
@@ -104,7 +108,7 @@ public class PlayerController : MonoBehaviour
         ResetUIColor();
         timeLeft = 10f;
         isBasicPlayer = true;
-        DestroyAll();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         yield return new WaitForSecondsRealtime(0.01f);
         player.AddComponent<BasicPlayer>();
         

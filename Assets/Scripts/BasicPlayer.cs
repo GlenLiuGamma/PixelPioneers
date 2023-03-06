@@ -25,7 +25,15 @@ public class BasicPlayer : MonoBehaviour
     [SerializeField] protected LayerMask ground;
     [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
     
-    
+    protected Text timepopup;
+
+    protected float timer = 0f;
+
+    protected float offset = 0.5f;
+
+    protected bool isShow;
+
+
     
     public delegate void OnGameOver();
     public static OnGameOver onGameOver;
@@ -33,9 +41,15 @@ public class BasicPlayer : MonoBehaviour
     public GameObject startpoint;
     public GameObject game_manager;
 
+    protected GameObject pauseMenuUI;
+
+    private Color playerTextColor = new Color(33, 105, 52);
+
 
     void Start()
     {
+        //pauseMenuUI = GameObject.Find("PauseMenu");
+        //pauseMenuUI.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
@@ -46,6 +60,11 @@ public class BasicPlayer : MonoBehaviour
         ground = LayerMask.GetMask(GROUND_LAYER);
         startpoint = GameObject.Find(RESPAWN);
         game_manager = GameObject.Find("GameManager");
+
+        timepopup = GameObject.Find("timepop").GetComponent<Text>();
+        timepopup.enabled = false;
+        isShow = false;
+
 
         AddDeadLayers();
         InitializeParameters();
@@ -59,13 +78,22 @@ public class BasicPlayer : MonoBehaviour
     protected virtual void InitializeParameters(){
         rb.gravityScale = 8;
         sr.color = Color.white;
-        BasicPlayerText.color = Color.green;
+        BasicPlayerText.color = Color.white;
         DashPlayerText.color = Color.black;
         AntigravityPlayerText.color = Color.black;
     }
 
     void Update()
     {
+        if (isShow) {
+            if (timer > offset) {
+                timepopup.enabled = false;
+                timer = 0f;
+            }else {
+                timer += Time.deltaTime;
+            }
+        }
+
         Movement();
         CheckStandingOn(DeadLayers);
     }
@@ -113,7 +141,11 @@ public class BasicPlayer : MonoBehaviour
             DeathReason = BOUND_TAG;
             Debug.Log(DeathReason);
             Die(DeathReason);
+        } else if (other.gameObject.CompareTag("time_reward")) {
+            timepopup.enabled = true;
+            isShow = true;
         }
+
     }
 
     protected void Die(string DeathReason){
@@ -139,9 +171,13 @@ public class BasicPlayer : MonoBehaviour
         
         SendToGoogle stg = game_manager.GetComponent<SendToGoogle>();
         GameEvent game_event = game_manager.GetComponent<GameEvent>();
-        game_event.Deathcnt += 1;
+        DataStorage.Deathcnt += 1;
         stg.Send(DeathPosition, DeathReason, DeathCharacter);
-        transform.position = startpoint.transform.position;
+        //Enable pause menu scene
+        /* pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
+        pauseMenuUI.transform.Find("GameOver").transform.gameObject.SetActive(true);
+        pauseMenuUI.SetActive(true);*/
+        transform.position = startpoint.transform.position; 
         onGameOver?.Invoke();
     }
 

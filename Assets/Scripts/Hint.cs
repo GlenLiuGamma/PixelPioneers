@@ -4,8 +4,20 @@ using UnityEngine.UI;
 public class Hint : MonoBehaviour
 {
     public GameObject dialoguePanel;
+    public GameObject pressSpace;
+    public GameObject pressX;
+    public GameObject pressRight;
+    public GameObject pressC;
+
     public Text dialogueText;
     public bool playerIsClose;
+    public bool showX;
+    public bool showRight;
+    public bool showC;
+
+    public bool closeWater;
+    public bool closeSpike;
+    public bool closeEdge;
 
     // Update is called once per frame
     void Update()
@@ -13,8 +25,47 @@ public class Hint : MonoBehaviour
         if(playerIsClose){
             if(!dialoguePanel.activeInHierarchy){
                 dialoguePanel.SetActive(true);
+                
+
             }
         }
+        if((PlayerController.isBasicPlayer && closeWater)||closeSpike||closeEdge){
+            
+            pressSpace.SetActive(true);
+        }else{
+            pressSpace.SetActive(false);
+
+        }
+        // if(closeSpike){
+        //     pressSpace.SetActive(true);
+        // }else{
+        //     // Debug.Log("hhhhhhh");
+        //     pressSpace.SetActive(false);
+        // }
+        if(PlayerController.isBasicPlayer && showX){
+            pressX.SetActive(true);
+        }else{
+            pressX.SetActive(false);
+
+        }
+        if(showRight){
+            pressRight.SetActive(true);
+        }else{
+            pressRight.SetActive(false);
+        }
+        if(showC && PlayerController.isBasicPlayer){
+            pressC.SetActive(true);
+        }else{
+            pressC.SetActive(false);
+
+        }
+        // if(closeWater){
+        //     pressSpace.SetActive(true);
+        // }else{
+        //     pressSpace.SetActive(false);
+
+        // }
+
     }
 
     public void zeroText(){
@@ -23,29 +74,37 @@ public class Hint : MonoBehaviour
     }
   private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Jump")){
+            closeWater = true;
             playerIsClose = true;
-            dialogueText.text = "Don’t touch the water!";
-        }else if(other.CompareTag("LongRiver")){
-            playerIsClose = true;
-            dialogueText.text = "Can’t jump over! Switch to Dash Player~";
-        }else if(other.CompareTag("Time")){
-            playerIsClose = true;
-            dialogueText.text = "Keep track of time Switch back to Default Player";
         }else if(other.CompareTag("DashBox")){
             playerIsClose = true;
-            dialogueText.text = "Dash through the boxes!";
+            showRight = true;
         }else if(other.CompareTag("Spike")){
             playerIsClose = true;
-            dialogueText.text = "Spikes hurt all characters!";
+            closeSpike = true;
         }else if(other.CompareTag("Antigravity")){
             playerIsClose = true;
-            dialogueText.text = "Switch to Antigravity Player, and press space to change gravity";
+            closeEdge = true;
+        }else if(other.CompareTag("dashhint")){
+            playerIsClose = true;
+            showX = true;
+        }else if(other.CompareTag("antihint")){
+            playerIsClose = true;
+            showC = true;
+        }else if(other.CompareTag("antihint2")){
+            closeEdge = true;
+            playerIsClose = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.CompareTag("Jump") || other.CompareTag("LongRiver") || other.CompareTag("Time") || other.CompareTag("DashBox") || other.CompareTag("Spike") || other.CompareTag("Antigravity")){
+        if(other.CompareTag("Jump") || other.CompareTag("Time") || other.CompareTag("DashBox") || other.CompareTag("Spike") || other.CompareTag("Antigravity") || other.CompareTag("dashhint") || other.CompareTag("antihint") || other.CompareTag("antihint2")){
             playerIsClose = false;
+            closeWater = false;
+            showX = false;
+            showRight = false;
+            showC = false;
+            closeEdge = false;            
             zeroText();
         }
     }

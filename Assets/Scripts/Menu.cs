@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Menu: MonoBehaviour
 {
+
+    public void start() {
+        DataStorage.Deathcnt = 0;
+        DataStorage.sessionID = 0;
+        DataStorage.coin_count = 0;
+    }
+    
     public void ExitButton(){
         Application.Quit();
         Debug.Log("Game closed");

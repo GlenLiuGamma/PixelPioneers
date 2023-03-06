@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenu: MonoBehaviour {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public string nextLevel;
     // Update is called once per frame
+    void Start() {
+        pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(false);
+    }
     void Update(){
         if (Input.GetKeyDown(KeyCode.Escape)){
             Debug.Log("Escape Entered");
@@ -13,6 +17,7 @@ public class PauseMenu: MonoBehaviour {
                 Resume();
             } else {
                 Pause();
+                
             }
         }
     }
@@ -23,10 +28,15 @@ public class PauseMenu: MonoBehaviour {
         GameIsPaused = false;
     }
 
-    void Pause(){
+    public void Pause(){
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void Restart(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMenu(){
@@ -38,5 +48,11 @@ public class PauseMenu: MonoBehaviour {
     public void QuitGame(){
         Debug.Log("Quitting Game...");
         Application.Quit();
+    }
+
+    public void NextLevel(){
+        Debug.Log("Load to next level");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(nextLevel);
     }
 }

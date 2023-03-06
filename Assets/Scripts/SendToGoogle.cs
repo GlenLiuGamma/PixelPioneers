@@ -11,6 +11,9 @@ public class SendToGoogle : MonoBehaviour
     [SerializeField] private GameEvent _eventCount;
     [SerializeField] private string Level;
 
+    public float total_coin = 0f;
+
+
     // Start is called before the first frame update
     public GameObject player_control;
     private void Awake()
@@ -21,6 +24,11 @@ public class SendToGoogle : MonoBehaviour
         Debug.Log("_sessionID: " + _sessionID);
         Debug.Log("Death Count is: " + _eventCount);
         Debug.Log("Changing character count is: " + _eventCount);
+        if (DataStorage.sessionID == 0) {
+            DataStorage.sessionID = _sessionID;
+        }
+
+        total_coin = GameObject.Find("Rewards").transform.childCount;
 
     }
 
@@ -42,6 +50,11 @@ public class SendToGoogle : MonoBehaviour
     Level: entry.246051495
 
     */
+    Debug.Log("the coin collected is :" + DataStorage.coin_count);
+    float coin_collect_percent = DataStorage.coin_count/total_coin;
+    Debug.Log("collecting percent is :" + coin_collect_percent);
+    
+
     form.AddField("entry.1277992947", sessionID);
     form.AddField("entry.1776729504", TimeLeft);
     form.AddField("entry.299018717", time);
@@ -50,6 +63,7 @@ public class SendToGoogle : MonoBehaviour
     form.AddField("entry.69297460", DeathPosition);
     form.AddField("entry.1912151537", CurrentCharacter);
     form.AddField("entry.246051495", Level);
+    form.AddField("entry.2120772137",coin_collect_percent.ToString());
 
     // Send responses and verify result
     using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
@@ -72,7 +86,7 @@ public class SendToGoogle : MonoBehaviour
      string Timeleft = "";
      PlayerController time_left = player_control.GetComponent<PlayerController>();
      Timeleft = time_left.timeLeft.ToString();
-     StartCoroutine(Post(_sessionID.ToString(),  _eventCount.Deathcnt.ToString(), Time.time.ToString(), Timeleft, DeathReason, DeathPosition, CurrentCharacter, Level));
+     StartCoroutine(Post(DataStorage.sessionID.ToString(),  DataStorage.Deathcnt.ToString(), Time.time.ToString(), Timeleft, DeathReason, DeathPosition, CurrentCharacter, Level));
 
      /*
      1. Amount of time to switch characters - _eventCount.Timeleft

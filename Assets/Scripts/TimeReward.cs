@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeReward : MonoBehaviour
 {
+
     [SerializeField] private float bonusTime = 1.0f;
     public delegate void TimeRewardDelegate(float time);
     public static TimeRewardDelegate timeRewardDelegate;
@@ -13,6 +14,8 @@ public class TimeReward : MonoBehaviour
         {
             Destroy(this.gameObject);
             timeRewardDelegate?.Invoke(bonusTime);
+            DataStorage.coin_count += 1;
+
         }
     }
 }
