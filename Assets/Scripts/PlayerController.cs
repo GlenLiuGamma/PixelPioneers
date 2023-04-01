@@ -105,6 +105,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator WaitToStartGame()
     {
+        yield return new WaitForSecondsRealtime(1.5f);
         ResetUIColor();
         timeLeft = 10f;
         isBasicPlayer = true;

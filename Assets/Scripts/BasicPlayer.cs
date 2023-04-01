@@ -12,6 +12,8 @@ public class BasicPlayer : MonoBehaviour
     protected string BOUND_TAG = "Bound";
     protected string RESPAWN = "respawn";
 
+    string DEATH_ANIMATION_TRIGGER = "death";
+
     protected Rigidbody2D rb;
     protected SpriteRenderer sr;
     protected BoxCollider2D coll;
@@ -44,7 +46,7 @@ public class BasicPlayer : MonoBehaviour
     protected GameObject pauseMenuUI;
 
     private Color playerTextColor = new Color(33, 105, 52);
-
+    private Animator anim;
 
     void Start()
     {
@@ -53,6 +55,7 @@ public class BasicPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
         BasicPlayerText = GameObject.Find("BasicPlayerText").GetComponent<Text>();
         DashPlayerText = GameObject.Find("DashPlayerText").GetComponent<Text>();
         AntigravityPlayerText = GameObject.Find("AntigravityPlayerText").GetComponent<Text>();
@@ -148,6 +151,12 @@ public class BasicPlayer : MonoBehaviour
 
     }
 
+    private void DeadAnimation()
+    {
+        anim.SetTrigger(DEATH_ANIMATION_TRIGGER);
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+
     protected void Die(string DeathReason){
         
         //string DeathReason = "";water, detected by the tower, out of bound
@@ -177,7 +186,7 @@ public class BasicPlayer : MonoBehaviour
         /* pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
         pauseMenuUI.transform.Find("GameOver").transform.gameObject.SetActive(true);
         pauseMenuUI.SetActive(true);*/
-        transform.position = startpoint.transform.position; 
+        DeadAnimation();
         onGameOver?.Invoke();
     }
 
