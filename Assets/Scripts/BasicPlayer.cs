@@ -14,6 +14,7 @@ public class BasicPlayer : MonoBehaviour
     protected string RESPAWN = "respawn";
 
     string DEATH_ANIMATION_TRIGGER = "death";
+    protected string ENEMY_TAG = "enemy";
 
     protected Rigidbody2D rb;
     protected SpriteRenderer sr;
@@ -175,6 +176,13 @@ public class BasicPlayer : MonoBehaviour
             show_reward = true;
             isShow = true;
         }
+        else if (other.gameObject.CompareTag(ENEMY_TAG)){
+             string DeathReason = "";   
+            DeathReason = ENEMY_TAG;
+            Debug.Log(DeathReason);
+            Die(DeathReason);
+        }
+        
 
     }
 
