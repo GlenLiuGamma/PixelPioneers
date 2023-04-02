@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 3f;
-    Rigidbody2D myRigidbody;
-    BoxCollider2D myBoxCollider;
+
+    [SerializeField] private GameObject[] waypoints;
+    private int currentWaypointIndex = 0;
+     Rigidbody2D myRigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -14,23 +16,18 @@ public class EnemyBehavior : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(IsFacingRight()) {
-            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
-        } else {
-            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+        if(Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f)
+        {
+            currentWaypointIndex++;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            if(currentWaypointIndex >= waypoints.Length)
+            {
+                currentWaypointIndex = 0;
+            }
         }
+        transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * moveSpeed);
     }
 
-    private bool IsFacingRight()
-    {
-        return transform.localScale.x > Mathf.Epsilon;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        transform.localScale = new Vector2(-Mathf.Sign(myRigidbody.velocity.x), transform.localScale.y);
-    }
 }
