@@ -5,6 +5,11 @@ public class DashPlayer : BasicPlayer
     protected override void Movement(){
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        if (Input.GetKeyDown(KeyCode.Space) == true) {
+            jumpingtext.enabled = true;
+            show_jump = true;
+            isShow = true;
+        }
     }
     protected override void InitializeParameters()
     {
