@@ -32,6 +32,9 @@ public class DashPlayer : BasicPlayer
         }else if (other.gameObject.CompareTag("time_reward")) {
             timepopup.enabled = true;
             isShow = true;
+        }else if (other.gameObject.CompareTag(ENEMY_TAG)){
+            Destroy(other.gameObject);
+            Debug.Log("destroy enemy by dash player");
         }
 
     }
