@@ -23,6 +23,7 @@ TagManager:
   - antihint2
   - PauseMenu
   - enemy
+  - Goal_Level2
   layers:
   - Default
   - TransparentFX

@@ -65,6 +65,16 @@ public class GoalController : MonoBehaviour
             DataStorage.Deathcnt = 0;
             DataStorage.sessionID = 0;
             DataStorage.coin_count = 0;
+        } else if (other.gameObject.CompareTag("Goal_Level2")) {
+            Debug.Log("touching goal");
+            string DeathReason = "Goal_Level2";
+            string GoalPosition = "Goal_Level2";
+            string CurrentCharacter = "Goal_Level2";
+            stg.Send(DeathReason, GoalPosition, CurrentCharacter);
+            DataStorage.Deathcnt = 0;
+            DataStorage.sessionID = 0;
+            DataStorage.coin_count = 0;
+            SceneManager.LoadScene("GameOver");//Final stage will load the GameOver Scene
         }
     }
 }
