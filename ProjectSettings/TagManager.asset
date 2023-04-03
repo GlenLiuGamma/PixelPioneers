@@ -23,6 +23,7 @@ TagManager:
   - antihint2
   - PauseMenu
   - enemy
+  - Goal_Level3
   layers:
   - Default
   - TransparentFX
@@ -59,6 +60,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 4245374845
+    locked: 0
+  - name: Background2
+    uniqueID: 3297113427
     locked: 0
   - name: Ground
     uniqueID: 1099899573
