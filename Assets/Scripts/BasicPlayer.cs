@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BasicPlayer : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class BasicPlayer : MonoBehaviour
     protected string TRAP_TAG = "Trap";
     protected string BOUND_TAG = "Bound";
     protected string RESPAWN = "respawn";
+
+    string DEATH_ANIMATION_TRIGGER = "death";
+    protected string ENEMY_TAG = "enemy";
 
     protected Rigidbody2D rb;
     protected SpriteRenderer sr;
@@ -27,11 +31,21 @@ public class BasicPlayer : MonoBehaviour
     
     protected Text timepopup;
 
+    protected TextMeshPro jumpingtext;
+
     protected float timer = 0f;
+
+    protected float timer_jump = 0f;
 
     protected float offset = 0.5f;
 
+    protected float offset_jump = 2.0f;
+
     protected bool isShow;
+
+    protected bool show_reward;
+
+    protected bool show_jump;
 
 
     
@@ -44,7 +58,7 @@ public class BasicPlayer : MonoBehaviour
     protected GameObject pauseMenuUI;
 
     private Color playerTextColor = new Color(33, 105, 52);
-
+    private Animator anim;
 
     void Start()
     {
@@ -53,6 +67,7 @@ public class BasicPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
         BasicPlayerText = GameObject.Find("BasicPlayerText").GetComponent<Text>();
         DashPlayerText = GameObject.Find("DashPlayerText").GetComponent<Text>();
         AntigravityPlayerText = GameObject.Find("AntigravityPlayerText").GetComponent<Text>();
@@ -64,6 +79,12 @@ public class BasicPlayer : MonoBehaviour
         timepopup = GameObject.Find("timepop").GetComponent<Text>();
         timepopup.enabled = false;
         isShow = false;
+
+        jumpingtext = GameObject.Find("jumping").GetComponent<TextMeshPro>();
+        jumpingtext.enabled = false;
+
+        show_reward = false;
+        show_jump = false;
 
 
         AddDeadLayers();
@@ -88,9 +109,18 @@ public class BasicPlayer : MonoBehaviour
         if (isShow) {
             if (timer > offset) {
                 timepopup.enabled = false;
+                show_reward = false;
                 timer = 0f;
             }else {
                 timer += Time.deltaTime;
+            }
+
+            if (timer_jump > offset_jump) {
+                jumpingtext.enabled = false;
+                show_jump = false;
+                timer_jump = 0f;
+            }else {
+                timer_jump += Time.deltaTime;
             }
         }
 
@@ -143,9 +173,23 @@ public class BasicPlayer : MonoBehaviour
             Die(DeathReason);
         } else if (other.gameObject.CompareTag("time_reward")) {
             timepopup.enabled = true;
+            show_reward = true;
             isShow = true;
         }
+        else if (other.gameObject.CompareTag(ENEMY_TAG)){
+             string DeathReason = "";   
+            DeathReason = ENEMY_TAG;
+            Debug.Log(DeathReason);
+            Die(DeathReason);
+        }
+        
 
+    }
+
+    private void DeadAnimation()
+    {
+        anim.SetTrigger(DEATH_ANIMATION_TRIGGER);
+        rb.bodyType = RigidbodyType2D.Static;
     }
 
     protected void Die(string DeathReason){
@@ -177,7 +221,7 @@ public class BasicPlayer : MonoBehaviour
         /* pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
         pauseMenuUI.transform.Find("GameOver").transform.gameObject.SetActive(true);
         pauseMenuUI.SetActive(true);*/
-        transform.position = startpoint.transform.position; 
+        DeadAnimation();
         onGameOver?.Invoke();
     }
 
