@@ -22,13 +22,13 @@ public class GoalController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Goal_Level1"))
         {
-            
             Time.timeScale = 0f;
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
             pauseMenuUI.SetActive(true);
             Debug.Log("Pass the tutorial after pauseMenuUI");
-
+            //pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
+            //pauseMenuUI.SetActive(true);
             string DeathReason = "Goal_Level1";
             string GoalPosition = "Goal_Level1";
             string CurrentCharacter = "Goal_Level1";
@@ -36,7 +36,7 @@ public class GoalController : MonoBehaviour
             DataStorage.Deathcnt = 0;
             DataStorage.sessionID = 0;
             DataStorage.coin_count = 0;
-
+            // SceneManager.LoadScene("GameOver");//Final stage will load the GameOver Scene
         } else if(other.gameObject.CompareTag("Goal_Tutorial1")){
             Time.timeScale = 0f;
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
