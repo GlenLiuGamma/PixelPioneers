@@ -68,6 +68,9 @@ TagManager:
   - name: Background3
     uniqueID: 1465994641
     locked: 0
+  - name: checkpoint
+    uniqueID: 539605849
+    locked: 0
   - name: Ground
     uniqueID: 1099899573
     locked: 0
