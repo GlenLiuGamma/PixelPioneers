@@ -26,6 +26,7 @@ TagManager:
   - Goal_Level3
   - Goal_Level2
   - zoomDestination
+  - Goal_Level4
   layers:
   - Default
   - TransparentFX
@@ -75,9 +76,9 @@ TagManager:
   - name: Ground
     uniqueID: 1099899573
     locked: 0
-  - name: UI
-    uniqueID: 1318051655
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1318051655
     locked: 0

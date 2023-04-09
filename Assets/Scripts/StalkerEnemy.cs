@@ -51,13 +51,13 @@ public class StalkerEnemy : MonoBehaviour
         {
             //enemy is to the left side of the player, so move right
             myRigidbody.velocity = new Vector2(movespeed, myRigidbody.velocity.y);
-            transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+            transform.localScale = new Vector2(originalScale, transform.localScale.y);
         }
         else
         {
             //enemy is to the right side of the player, so move left
             myRigidbody.velocity = new Vector2(-movespeed, myRigidbody.velocity.y);
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            transform.localScale = new Vector2(-originalScale, transform.localScale.y);
 
         }
     }

@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
         player = GameObject.Find(PLAYER_NAME);
         player.AddComponent<BasicPlayer>();
         isBasicPlayer = true;
+        isAntiGravityPlayer = false;
+        isDashPlayer = false;
         timeLeftDisplay = GameObject.Find("TimeLeft").GetComponent<Text>();
         dashPlayerUI = GameObject.Find("Canvas/DashPlayerUI");
         antigravityPlayerUI = GameObject.Find("Canvas/AntiGravityPlayer");
