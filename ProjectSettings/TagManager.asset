@@ -25,6 +25,8 @@ TagManager:
   - enemy
   - Goal_Level3
   - Goal_Level2
+  - zoomDestination
+  - hiddenPath
   layers:
   - Default
   - TransparentFX

@@ -20,25 +20,11 @@ public class StalkerEnemy : MonoBehaviour
     float acceleration;
     Rigidbody2D myRigidbody;
     // Update is called once per frame
-
-   /*  private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            
-            collision.gameObject.transform.SetParent(transform);
-            //collision.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.SetParent(null);
-        }
-    } */
+    private float origninalLocalscale;  
 
     void Start() {
         myRigidbody = GetComponent<Rigidbody2D>();
+        origninalLocalscale = transform.localScale.x;
     }
     void Update()
     {
@@ -58,18 +44,20 @@ public class StalkerEnemy : MonoBehaviour
     }
     void ChasePlayer()
         {
+
             if (transform.position.x < player.position.x)
             {
+                Debug.Log("at left side");
                 //enemy is to the left side of the player, so move right
                 myRigidbody.velocity = new Vector2(movespeed, 0);
-                transform.localScale = new Vector2(transform.localScale.x,transform.localScale.y);
+                transform.localScale = new Vector2(origninalLocalscale,transform.localScale.y);
             }
-            else
+            else if (transform.position.x > player.position.x)
             {
                 //enemy is to the right side of the player, so move left
+                Debug.Log("at right side");
                 myRigidbody.velocity = new Vector2(-movespeed, 0);
-                transform.localScale = new Vector2(-transform.localScale.x,transform.localScale.y);
-
+                transform.localScale = new Vector2(-origninalLocalscale,transform.localScale.y);
             }
         }
 
