@@ -1,0 +1,34 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "17a228e3-2ed3-4415-82a9-710c3fcb4baa",
+            "actions": [
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "da5f5cf7-de5d-42e1-b16c-8413ab640409",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d96cbe7a-fa34-4dad-8ce8-c08a424caa27",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
