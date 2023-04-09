@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class BasicPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -28,8 +29,8 @@ public class BasicPlayer : MonoBehaviour
     [SerializeField] protected float jumpForce = 30f;
     [SerializeField] protected LayerMask ground;
     [SerializeField] protected LayerMask water;
-    [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
-    
+    [SerializeField] protected List<LayerMask> DeadLayers = new List<LayerMask>();
+
     protected Text timepopup;
 
     protected Image jumpingtext;
@@ -61,12 +62,12 @@ public class BasicPlayer : MonoBehaviour
     private Color playerTextColor = new Color(33, 105, 52);
     private Animator anim;
 
-    protected  GameObject shield;
+    protected GameObject shield;
     public static float shieldTimeLeft = 3f;
-    
-    
-    
-    private enum MovementState {idle, running, jump, fall };
+
+
+
+    private enum MovementState { idle, running, jump, fall };
     private MovementState state = MovementState.idle;
     void Start()
     {
@@ -103,13 +104,15 @@ public class BasicPlayer : MonoBehaviour
         InitializeParameters();
     }
 
-    protected virtual void AddDeadLayers(){
+    protected virtual void AddDeadLayers()
+    {
         DeadLayers.Add(LayerMask.GetMask(WATER_LAYER));
     }
     // Update is called once per frame
 
-    protected virtual void InitializeParameters(){
-        transform.localScale = new Vector2(transform.localScale.x, transform.localScale.x);
+    protected virtual void InitializeParameters()
+    {
+        transform.localScale = new Vector2(transform.localScale.x, Mathf.Abs(transform.localScale.y));
         rb.gravityScale = 8;
         sr.color = Color.white;
         BasicPlayerText.color = Color.white;
@@ -119,24 +122,32 @@ public class BasicPlayer : MonoBehaviour
 
     void Update()
     {
-        if(Shield.shieldDestroied){
+        if (Shield.shieldDestroied)
+        {
             Debug.Log("hhhhhhhhhhhhhhh");
             shieldTimeUpdate();
         }
-        if (isShow) {
-            if (timer > offset) {
+        if (isShow)
+        {
+            if (timer > offset)
+            {
                 timepopup.enabled = false;
                 show_reward = false;
                 timer = 0f;
-            }else {
+            }
+            else
+            {
                 timer += Time.deltaTime;
             }
 
-            if (timer_jump > offset_jump) {
+            if (timer_jump > offset_jump)
+            {
                 jumpingtext.enabled = false;
                 show_jump = false;
                 timer_jump = 0f;
-            }else {
+            }
+            else
+            {
                 timer_jump += Time.deltaTime;
             }
         }
@@ -146,7 +157,8 @@ public class BasicPlayer : MonoBehaviour
         CheckStandingOn(DeadLayers);
     }
 
-    protected virtual void Movement(){
+    protected virtual void Movement()
+    {
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
         // player can jumps or changes his gravity only when he touches the ground 
@@ -154,11 +166,12 @@ public class BasicPlayer : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        
-        
+
+
 
     }
-    private void UpdatePlayerAnimation(){
+    private void UpdatePlayerAnimation()
+    {
         //MovementState state;
         if (dirX > 0f)
         {
@@ -179,22 +192,28 @@ public class BasicPlayer : MonoBehaviour
         {
             state = MovementState.jump;
         }
-        if(rb.velocity.y < -.1f)
+        if (rb.velocity.y < -.1f)
         {
             state = MovementState.fall;
         }
         anim.SetInteger("state", (int)state);
     }
 
-    private void CheckStandingOn(List<LayerMask> DeadLayers){
-        foreach (LayerMask layer in DeadLayers){
-            if (IsStandingOn(layer)){
-                if(HasShield()){
+    private void CheckStandingOn(List<LayerMask> DeadLayers)
+    {
+        foreach (LayerMask layer in DeadLayers)
+        {
+            if (IsStandingOn(layer))
+            {
+                if (HasShield())
+                {
                     Shield.shieldDestroied = true;
-                }else{
+                }
+                else
+                {
                     Die(WATER_TAG);
                     break;
-                } 
+                }
             }
         }
     }
@@ -217,72 +236,96 @@ public class BasicPlayer : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
-       
-        if (other.gameObject.CompareTag(TRAP_TAG)){
-            if(HasShield()){
+
+        if (other.gameObject.CompareTag(TRAP_TAG))
+        {
+            if (HasShield())
+            {
                 Shield.shieldDestroied = true;
-            }else{
-                string DeathReason = "";   
+            }
+            else
+            {
+                string DeathReason = "";
                 DeathReason = TRAP_TAG;
                 Debug.Log(DeathReason);
                 Die(DeathReason);
             }
         }
-        else if (other.gameObject.CompareTag(WATER_TAG)){
-            if(HasShield()){
+        else if (other.gameObject.CompareTag(WATER_TAG))
+        {
+            if (HasShield())
+            {
                 Shield.shieldDestroied = true;
-            }else{
-                string DeathReason = "";   
+            }
+            else
+            {
+                string DeathReason = "";
                 DeathReason = WATER_TAG;
                 Debug.Log(DeathReason);
                 Die(DeathReason);
             }
         }
-        else if (other.gameObject.CompareTag(BOUND_TAG)) {
-            if(HasShield()){
+        else if (other.gameObject.CompareTag(BOUND_TAG))
+        {
+            if (HasShield())
+            {
                 Shield.shieldDestroied = true;
-            }else{
-                string DeathReason = "";   
+            }
+            else
+            {
+                string DeathReason = "";
                 DeathReason = BOUND_TAG;
                 Debug.Log(DeathReason);
                 Die(DeathReason);
             }
-        } else if (other.gameObject.CompareTag("time_reward")) {
+        }
+        else if (other.gameObject.CompareTag("time_reward"))
+        {
             timepopup.enabled = true;
             show_reward = true;
             isShow = true;
         }
-        else if (other.gameObject.CompareTag(ENEMY_TAG)){
-            if(HasShield()){
+        else if (other.gameObject.CompareTag(ENEMY_TAG))
+        {
+            if (HasShield())
+            {
                 Destroy(other.gameObject);
                 Shield.shieldDestroied = true;
-            }else{
-                string DeathReason = "";   
+            }
+            else
+            {
+                string DeathReason = "";
                 DeathReason = ENEMY_TAG;
                 Debug.Log(DeathReason);
                 Die(DeathReason);
             }
         }
-        
+
 
     }
 
-    protected bool HasShield(){
+    protected bool HasShield()
+    {
         return shield.activeSelf;
     }
 
-    void ActivateShield(){
+    void ActivateShield()
+    {
         shield.SetActive(true);
     }
 
-    void DeactivateShield(){
+    void DeactivateShield()
+    {
         shield.SetActive(false);
     }
-    private void shieldTimeUpdate(){
-        if(HasShield()){
-            shieldTimeLeft-= 1 * Time.deltaTime;
+    private void shieldTimeUpdate()
+    {
+        if (HasShield())
+        {
+            shieldTimeLeft -= 1 * Time.deltaTime;
             Debug.Log(shieldTimeLeft);
-            if(shieldTimeLeft < 0){
+            if (shieldTimeLeft < 0)
+            {
                 DeactivateShield();
                 Shield.shieldDestroied = false;
             }
@@ -295,40 +338,44 @@ public class BasicPlayer : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
     }
 
-    protected void Die(string DeathReason){
+    protected void Die(string DeathReason)
+    {
         // if(HasShield()){
         //     // shieldTimeLeft = 5;
         //     shieldDestroied = true;
         // }else{
-            //string DeathReason = "";water, detected by the tower, out of bound
-            string DeathPosition = "(";
-            DeathPosition += transform.position.x.ToString();
-            DeathPosition += ", ";
-            DeathPosition += transform.position.y.ToString();
-            DeathPosition += ")";
-            Debug.Log("Death position: " + DeathPosition);
+        //string DeathReason = "";water, detected by the tower, out of bound
+        string DeathPosition = "(";
+        DeathPosition += transform.position.x.ToString();
+        DeathPosition += ", ";
+        DeathPosition += transform.position.y.ToString();
+        DeathPosition += ")";
+        Debug.Log("Death position: " + DeathPosition);
 
-            string DeathCharacter = "";
-            if (sr.color == Color.white){
-                DeathCharacter = "BasicPlayer";
-            }
-            else if (sr.color == Color.blue){
-                DeathCharacter = "DashPlayer";
-            }
-            else if (sr.color == Color.yellow){
-                DeathCharacter = "AntiGravityPlayer";
-            }
+        string DeathCharacter = "";
+        if (sr.color == Color.white)
+        {
+            DeathCharacter = "BasicPlayer";
+        }
+        else if (sr.color == Color.blue)
+        {
+            DeathCharacter = "DashPlayer";
+        }
+        else if (sr.color == Color.yellow)
+        {
+            DeathCharacter = "AntiGravityPlayer";
+        }
 
-            SendToGoogle stg = game_manager.GetComponent<SendToGoogle>();
-            GameEvent game_event = game_manager.GetComponent<GameEvent>();
-            DataStorage.Deathcnt += 1;
-            stg.Send(DeathPosition, DeathReason, DeathCharacter);
-            //Enable pause menu scene
-            /* pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
-            pauseMenuUI.transform.Find("GameOver").transform.gameObject.SetActive(true);
-            pauseMenuUI.SetActive(true);*/
-            DeadAnimation();
-            onGameOver?.Invoke();
+        SendToGoogle stg = game_manager.GetComponent<SendToGoogle>();
+        GameEvent game_event = game_manager.GetComponent<GameEvent>();
+        DataStorage.Deathcnt += 1;
+        stg.Send(DeathPosition, DeathReason, DeathCharacter);
+        //Enable pause menu scene
+        /* pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
+        pauseMenuUI.transform.Find("GameOver").transform.gameObject.SetActive(true);
+        pauseMenuUI.SetActive(true);*/
+        DeadAnimation();
+        onGameOver?.Invoke();
         // }
     }
 

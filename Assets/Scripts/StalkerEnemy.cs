@@ -21,26 +21,8 @@ public class StalkerEnemy : MonoBehaviour
     Rigidbody2D myRigidbody;
     // Update is called once per frame
 
-<<<<<<< Updated upstream
     private float originalScale;
 
-=======
-    /*  private void OnCollisionEnter2D(Collision2D collision) {
-         if (collision.gameObject.CompareTag("Player"))
-         {
-
-             collision.gameObject.transform.SetParent(transform);
-             //collision.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-         }
-     }
->>>>>>> Stashed changes
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.SetParent(null);
-        }
-    } */
 
     void Start()
     {
