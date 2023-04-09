@@ -19,6 +19,7 @@ public class DashPlayer : BasicPlayer
         DashPlayerText.color = Color.blue;
         AntigravityPlayerText.color = Color.black;
         moveSpeed = 25f;
+        transform.localScale = new Vector2(transform.localScale.x, transform.localScale.x);
     }
     protected override void OnCollisionEnter2D(Collision2D other)
     {
