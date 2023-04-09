@@ -151,6 +151,17 @@ public class BasicPlayer : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 1f, layer);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("time_reward"))
+        {
+            timepopup.enabled = true;
+            show_reward = true;
+            isShow = true;
+
+        }
+    }
+
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
        
@@ -171,10 +182,6 @@ public class BasicPlayer : MonoBehaviour
             DeathReason = BOUND_TAG;
             Debug.Log(DeathReason);
             Die(DeathReason);
-        } else if (other.gameObject.CompareTag("time_reward")) {
-            timepopup.enabled = true;
-            show_reward = true;
-            isShow = true;
         }
         else if (other.gameObject.CompareTag(ENEMY_TAG)){
              string DeathReason = "";   
