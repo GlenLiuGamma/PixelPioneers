@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class ShieldReward : MonoBehaviour
 {
-    GameObject shield;
+    [SerializeField] GameObject shield;
     void Start(){
-        shield = GameObject.Find("Shield");
-        if(shield == null){
-            Debug.Log("NO");
-        }
+        // shield = GameObject.Find("Shield");
+        // while(shield == null){ 
+        //     shield = GameObject.Find("Shield");
+        //     Debug.Log("NO");
+        // }
     }
 
     void Update(){
@@ -19,6 +20,9 @@ public class ShieldReward : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if(shield == null){
+                shield = GameObject.Find("Shield");
+            }
             shield.SetActive(true);
             BasicPlayer.shieldTimeLeft = 5;
             Destroy(this.gameObject);
