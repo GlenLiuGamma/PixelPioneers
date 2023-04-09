@@ -14,6 +14,7 @@ public class AntiGravityPlayer : BasicPlayer
     }
     protected override void InitializeParameters()
     {
+        transform.localScale = new Vector2(transform.localScale.x, transform.localScale.x);
         rb.gravityScale = 8;
         sr.color = Color.yellow;
         BasicPlayerText.color = Color.black;
