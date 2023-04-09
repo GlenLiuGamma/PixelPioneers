@@ -27,8 +27,8 @@ public class BasicPlayer : MonoBehaviour
     [SerializeField] protected float moveSpeed = 16f;
     [SerializeField] protected float jumpForce = 30f;
     [SerializeField] protected LayerMask ground;
-    [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
-    
+    [SerializeField] protected List<LayerMask> DeadLayers = new List<LayerMask>();
+
     protected Text timepopup;
 
     protected TextMeshPro jumpingtext;
@@ -48,7 +48,7 @@ public class BasicPlayer : MonoBehaviour
     protected bool show_jump;
 
 
-    
+
     public delegate void OnGameOver();
     public static OnGameOver onGameOver;
 
@@ -60,6 +60,8 @@ public class BasicPlayer : MonoBehaviour
     private Color playerTextColor = new Color(33, 105, 52);
     private Animator anim;
 
+    private enum MovementState {idle, running, jump, fall };
+    private MovementState state = MovementState.idle;
     void Start()
     {
         //pauseMenuUI = GameObject.Find("PauseMenu");
@@ -125,6 +127,7 @@ public class BasicPlayer : MonoBehaviour
         }
 
         Movement();
+        UpdatePlayerAnimation();
         CheckStandingOn(DeadLayers);
     }
 
@@ -136,7 +139,38 @@ public class BasicPlayer : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
+        
+        
+
     }
+    private void UpdatePlayerAnimation(){
+        //MovementState state;
+        if (dirX > 0f)
+        {
+            state = MovementState.running;
+            sr.flipX = false;
+
+        }
+        else if (dirX < 0f)
+        {
+            state = MovementState.running;
+            sr.flipX = true;
+        }
+        if (dirX == 0f)
+        {
+            state = MovementState.idle;
+        }
+        if (rb.velocity.y > .1f)
+        {
+            state = MovementState.jump;
+        }
+        if(rb.velocity.y < -.1f)
+        {
+            state = MovementState.fall;
+        }
+        anim.SetInteger("state", (int)state);
+    }
+
     private void CheckStandingOn(List<LayerMask> DeadLayers){
         foreach (LayerMask layer in DeadLayers){
             if (IsStandingOn(layer)){
