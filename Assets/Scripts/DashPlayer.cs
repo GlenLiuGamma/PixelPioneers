@@ -20,21 +20,37 @@ public class DashPlayer : BasicPlayer
         AntigravityPlayerText.color = Color.black;
         moveSpeed = 25f;
     }
+    
     protected override void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Bound"))
         {
-            string DeathReason = BOUND_TAG;
-            Die(DeathReason);
+            if(HasShield()){
+                Shield.shieldDestroied = true;
+            }else{
+                string DeathReason = BOUND_TAG;
+                Die(DeathReason);
+            }
         } else if (other.gameObject.CompareTag("Trap")){
-            string DeathReason = TRAP_TAG;
-            Die(DeathReason);
+            if(HasShield()){
+                Shield.shieldDestroied = true;
+            }else{
+                string DeathReason = TRAP_TAG;
+                Die(DeathReason);
+            }
         }else if (other.gameObject.CompareTag("time_reward")) {
             timepopup.enabled = true;
             isShow = true;
         }else if (other.gameObject.CompareTag(ENEMY_TAG)){
             Destroy(other.gameObject);
-            Debug.Log("destroy enemy by dash player");
+            if(HasShield()){
+                Shield.shieldDestroied = true;
+                Debug.Log("destroy enemy by dash player");
+            }
+        }else if (other.gameObject.CompareTag(WATER_TAG)){
+            if(HasShield()){
+                Shield.shieldDestroied = true;
+            }
         }
 
     }
