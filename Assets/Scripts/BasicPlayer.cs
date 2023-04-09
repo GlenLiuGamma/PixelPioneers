@@ -31,7 +31,7 @@ public class BasicPlayer : MonoBehaviour
 
     protected Text timepopup;
 
-    protected TextMeshPro jumpingtext;
+    protected Image jumpingtext;
 
     protected float timer = 0f;
 
@@ -82,7 +82,7 @@ public class BasicPlayer : MonoBehaviour
         timepopup.enabled = false;
         isShow = false;
 
-        jumpingtext = GameObject.Find("jumping").GetComponent<TextMeshPro>();
+        jumpingtext = GameObject.Find("jumping").GetComponent<Image>();
         jumpingtext.enabled = false;
 
         show_reward = false;
