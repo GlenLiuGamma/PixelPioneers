@@ -9,10 +9,12 @@ public class AntiGravityPlayer : BasicPlayer
         if (Input.GetKeyDown("space"))
         {
             rb.gravityScale *= -1;
+            transform.localScale = new Vector2(transform.localScale.x, -transform.localScale.y);
         }
     }
     protected override void InitializeParameters()
     {
+        transform.localScale = new Vector2(transform.localScale.x, transform.localScale.x);
         rb.gravityScale = 8;
         sr.color = Color.yellow;
         BasicPlayerText.color = Color.black;

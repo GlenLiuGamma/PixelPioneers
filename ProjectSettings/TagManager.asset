@@ -25,6 +25,7 @@ TagManager:
   - enemy
   - Goal_Level3
   - Goal_Level2
+  - zoomDestination
   layers:
   - Default
   - TransparentFX
@@ -64,6 +65,12 @@ TagManager:
     locked: 0
   - name: Background2
     uniqueID: 3297113427
+    locked: 0
+  - name: Background3
+    uniqueID: 1465994641
+    locked: 0
+  - name: checkpoint
+    uniqueID: 539605849
     locked: 0
   - name: Ground
     uniqueID: 1099899573

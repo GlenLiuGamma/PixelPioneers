@@ -32,7 +32,7 @@ public class BasicPlayer : MonoBehaviour
     
     protected Text timepopup;
 
-    protected TextMeshPro jumpingtext;
+    protected Image jumpingtext;
 
     protected float timer = 0f;
 
@@ -49,7 +49,7 @@ public class BasicPlayer : MonoBehaviour
     protected bool show_jump;
 
 
-    
+
     public delegate void OnGameOver();
     public static OnGameOver onGameOver;
 
@@ -66,6 +66,8 @@ public class BasicPlayer : MonoBehaviour
     
     
     
+    private enum MovementState {idle, running, jump, fall };
+    private MovementState state = MovementState.idle;
     void Start()
     {
         shield = transform.Find("Shield").gameObject;
@@ -90,7 +92,7 @@ public class BasicPlayer : MonoBehaviour
         timepopup.enabled = false;
         isShow = false;
 
-        jumpingtext = GameObject.Find("jumping").GetComponent<TextMeshPro>();
+        jumpingtext = GameObject.Find("jumping").GetComponent<Image>();
         jumpingtext.enabled = false;
 
         show_reward = false;
@@ -107,6 +109,7 @@ public class BasicPlayer : MonoBehaviour
     // Update is called once per frame
 
     protected virtual void InitializeParameters(){
+        transform.localScale = new Vector2(transform.localScale.x, transform.localScale.x);
         rb.gravityScale = 8;
         sr.color = Color.white;
         BasicPlayerText.color = Color.white;
@@ -139,6 +142,7 @@ public class BasicPlayer : MonoBehaviour
         }
 
         Movement();
+        UpdatePlayerAnimation();
         CheckStandingOn(DeadLayers);
     }
 
@@ -150,7 +154,38 @@ public class BasicPlayer : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
+        
+        
+
     }
+    private void UpdatePlayerAnimation(){
+        //MovementState state;
+        if (dirX > 0f)
+        {
+            state = MovementState.running;
+            sr.flipX = false;
+
+        }
+        else if (dirX < 0f)
+        {
+            state = MovementState.running;
+            sr.flipX = true;
+        }
+        if (dirX == 0f)
+        {
+            state = MovementState.idle;
+        }
+        if (rb.velocity.y > .1f)
+        {
+            state = MovementState.jump;
+        }
+        if(rb.velocity.y < -.1f)
+        {
+            state = MovementState.fall;
+        }
+        anim.SetInteger("state", (int)state);
+    }
+
     private void CheckStandingOn(List<LayerMask> DeadLayers){
         foreach (LayerMask layer in DeadLayers){
             if (IsStandingOn(layer)){
@@ -167,6 +202,17 @@ public class BasicPlayer : MonoBehaviour
     private bool IsStandingOn(LayerMask layer)
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 1f, layer);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("time_reward"))
+        {
+            timepopup.enabled = true;
+            show_reward = true;
+            isShow = true;
+
+        }
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D other)
