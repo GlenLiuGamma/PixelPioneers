@@ -13,6 +13,7 @@ public class DashPlayer : BasicPlayer
     }
     protected override void InitializeParameters()
     {
+        transform.localScale = new Vector2(transform.localScale.x, transform.localScale.x);
         rb.gravityScale = 8;
         sr.color = Color.blue;
         BasicPlayerText.color = Color.black;

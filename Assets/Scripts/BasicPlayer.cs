@@ -99,6 +99,7 @@ public class BasicPlayer : MonoBehaviour
     // Update is called once per frame
 
     protected virtual void InitializeParameters(){
+        transform.localScale = new Vector2(transform.localScale.x, transform.localScale.x);
         rb.gravityScale = 8;
         sr.color = Color.white;
         BasicPlayerText.color = Color.white;
