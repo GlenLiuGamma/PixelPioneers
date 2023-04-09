@@ -104,6 +104,7 @@ public class BasicPlayer : MonoBehaviour
         BasicPlayerText.color = Color.white;
         DashPlayerText.color = Color.black;
         AntigravityPlayerText.color = Color.black;
+        transform.localScale = new Vector2(transform.localScale.x, transform.localScale.x);
     }
 
     void Update()
