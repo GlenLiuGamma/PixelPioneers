@@ -22,7 +22,11 @@ public class GoalController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Goal_Level1"))
         {
-            
+            Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
+            pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
+            pauseMenuUI.SetActive(true);
+            Debug.Log("Pass the tutorial after pauseMenuUI");
             //pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
             //pauseMenuUI.SetActive(true);
             string DeathReason = "Goal_Level1";
@@ -32,7 +36,7 @@ public class GoalController : MonoBehaviour
             DataStorage.Deathcnt = 0;
             DataStorage.sessionID = 0;
             DataStorage.coin_count = 0;
-            SceneManager.LoadScene("GameOver");//Final stage will load the GameOver Scene
+            // SceneManager.LoadScene("GameOver");//Final stage will load the GameOver Scene
         } else if(other.gameObject.CompareTag("Goal_Tutorial1")){
             Time.timeScale = 0f;
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
@@ -61,6 +65,48 @@ public class GoalController : MonoBehaviour
             DataStorage.Deathcnt = 0;
             DataStorage.sessionID = 0;
             DataStorage.coin_count = 0;
+        } else if (other.gameObject.CompareTag("Goal_Level2")) {
+            Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
+            pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
+            pauseMenuUI.SetActive(true);
+            Debug.Log("touching goal");
+            string DeathReason = "Goal_Level2";
+            string GoalPosition = "Goal_Level2";
+            string CurrentCharacter = "Goal_Level2";
+            stg.Send(DeathReason, GoalPosition, CurrentCharacter);
+            DataStorage.Deathcnt = 0;
+            DataStorage.sessionID = 0;
+            DataStorage.coin_count = 0;
+        } else if (other.gameObject.CompareTag("Goal_Level3")) {
+            Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
+            pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
+            pauseMenuUI.SetActive(true);
+            Debug.Log("touching goal");
+            string DeathReason = "Goal_Level3";
+            string GoalPosition = "Goal_Level3";
+            string CurrentCharacter = "Goal_Level3";
+            stg.Send(DeathReason, GoalPosition, CurrentCharacter);
+            DataStorage.Deathcnt = 0;
+            DataStorage.sessionID = 0;
+            DataStorage.coin_count = 0;
+            // SceneManager.LoadScene("GameOver");//Final stage will load the GameOver Scene
+        } else if (other.gameObject.CompareTag("Goal_Level4"))
+        {
+            Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
+            pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
+            pauseMenuUI.SetActive(true);
+            Debug.Log("touching goal");
+            string DeathReason = "Goal_Level4";
+            string GoalPosition = "Goal_Level4";
+            string CurrentCharacter = "Goal_Level4";
+            stg.Send(DeathReason, GoalPosition, CurrentCharacter);
+            DataStorage.Deathcnt = 0;
+            DataStorage.sessionID = 0;
+            DataStorage.coin_count = 0;
+            // SceneManager.LoadScene("GameOver");//Final stage will load the GameOver Scene
         }
     }
 }

@@ -28,4 +28,12 @@ public class Menu: MonoBehaviour
     {
         SceneManager.LoadScene("Level2");
     }
+    public void Start_Level3()
+    {
+        SceneManager.LoadScene("Level3");
+    }
+    public void Start_Level4()
+    {
+        SceneManager.LoadScene("Level4");
+    }
 }

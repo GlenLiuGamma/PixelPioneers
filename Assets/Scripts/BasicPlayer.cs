@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class BasicPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -27,11 +28,12 @@ public class BasicPlayer : MonoBehaviour
     [SerializeField] protected float moveSpeed = 16f;
     [SerializeField] protected float jumpForce = 30f;
     [SerializeField] protected LayerMask ground;
-    [SerializeField] protected List<LayerMask>  DeadLayers = new List<LayerMask>();
-    
+    [SerializeField] protected LayerMask water;
+    [SerializeField] protected List<LayerMask> DeadLayers = new List<LayerMask>();
+
     protected Text timepopup;
 
-    protected TextMeshPro jumpingtext;
+    protected Image jumpingtext;
 
     protected float timer = 0f;
 
@@ -48,7 +50,7 @@ public class BasicPlayer : MonoBehaviour
     protected bool show_jump;
 
 
-    
+
     public delegate void OnGameOver();
     public static OnGameOver onGameOver;
 
@@ -60,8 +62,18 @@ public class BasicPlayer : MonoBehaviour
     private Color playerTextColor = new Color(33, 105, 52);
     private Animator anim;
 
+    protected GameObject shield;
+    public static float shieldTimeLeft = 3f;
+
+
+
+    private enum MovementState { idle, running, jump, fall };
+    private MovementState state = MovementState.idle;
     void Start()
     {
+        shield = transform.Find("Shield").gameObject;
+        // DeactivateShield();
+
         //pauseMenuUI = GameObject.Find("PauseMenu");
         //pauseMenuUI.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
@@ -73,6 +85,7 @@ public class BasicPlayer : MonoBehaviour
         AntigravityPlayerText = GameObject.Find("AntigravityPlayerText").GetComponent<Text>();
 
         ground = LayerMask.GetMask(GROUND_LAYER);
+        water = LayerMask.GetMask(WATER_LAYER);
         startpoint = GameObject.Find(RESPAWN);
         game_manager = GameObject.Find("GameManager");
 
@@ -80,7 +93,7 @@ public class BasicPlayer : MonoBehaviour
         timepopup.enabled = false;
         isShow = false;
 
-        jumpingtext = GameObject.Find("jumping").GetComponent<TextMeshPro>();
+        jumpingtext = GameObject.Find("jumping").GetComponent<Image>();
         jumpingtext.enabled = false;
 
         show_reward = false;
@@ -91,12 +104,15 @@ public class BasicPlayer : MonoBehaviour
         InitializeParameters();
     }
 
-    protected virtual void AddDeadLayers(){
+    protected virtual void AddDeadLayers()
+    {
         DeadLayers.Add(LayerMask.GetMask(WATER_LAYER));
     }
     // Update is called once per frame
 
-    protected virtual void InitializeParameters(){
+    protected virtual void InitializeParameters()
+    {
+        transform.localScale = new Vector2(transform.localScale.x, Mathf.Abs(transform.localScale.y));
         rb.gravityScale = 8;
         sr.color = Color.white;
         BasicPlayerText.color = Color.white;
@@ -106,42 +122,98 @@ public class BasicPlayer : MonoBehaviour
 
     void Update()
     {
-        if (isShow) {
-            if (timer > offset) {
+        if (Shield.shieldDestroied)
+        {
+            Debug.Log("hhhhhhhhhhhhhhh");
+            shieldTimeUpdate();
+        }
+        if (isShow)
+        {
+            if (timer > offset)
+            {
                 timepopup.enabled = false;
                 show_reward = false;
                 timer = 0f;
-            }else {
+            }
+            else
+            {
                 timer += Time.deltaTime;
             }
 
-            if (timer_jump > offset_jump) {
+            if (timer_jump > offset_jump)
+            {
                 jumpingtext.enabled = false;
                 show_jump = false;
                 timer_jump = 0f;
-            }else {
+            }
+            else
+            {
                 timer_jump += Time.deltaTime;
             }
         }
 
         Movement();
+        UpdatePlayerAnimation();
         CheckStandingOn(DeadLayers);
     }
 
-    protected virtual void Movement(){
+    protected virtual void Movement()
+    {
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
         // player can jumps or changes his gravity only when he touches the ground 
-        if (Input.GetKeyDown("space") && IsStandingOn(ground))
+        if (Input.GetKeyDown("space") && (IsStandingOn(ground) || IsStandingOn(water)))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
+
+
+
     }
-    private void CheckStandingOn(List<LayerMask> DeadLayers){
-        foreach (LayerMask layer in DeadLayers){
-            if (IsStandingOn(layer)){
-                Die(WATER_TAG);
-                break;
+    private void UpdatePlayerAnimation()
+    {
+        //MovementState state;
+        if (dirX > 0f)
+        {
+            state = MovementState.running;
+            sr.flipX = false;
+
+        }
+        else if (dirX < 0f)
+        {
+            state = MovementState.running;
+            sr.flipX = true;
+        }
+        if (dirX == 0f)
+        {
+            state = MovementState.idle;
+        }
+        if (rb.velocity.y > .1f)
+        {
+            state = MovementState.jump;
+        }
+        if (rb.velocity.y < -.1f)
+        {
+            state = MovementState.fall;
+        }
+        anim.SetInteger("state", (int)state);
+    }
+
+    private void CheckStandingOn(List<LayerMask> DeadLayers)
+    {
+        foreach (LayerMask layer in DeadLayers)
+        {
+            if (IsStandingOn(layer))
+            {
+                if (HasShield())
+                {
+                    Shield.shieldDestroied = true;
+                }
+                else
+                {
+                    Die(WATER_TAG);
+                    break;
+                }
             }
         }
     }
@@ -151,39 +223,113 @@ public class BasicPlayer : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 1f, layer);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("time_reward"))
+        {
+            timepopup.enabled = true;
+            show_reward = true;
+            isShow = true;
+
+        }
+    }
+
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
-       
-        if (other.gameObject.CompareTag(TRAP_TAG)){
-            string DeathReason = "";   
-            DeathReason = TRAP_TAG;
-            Debug.Log(DeathReason);
-            Die(DeathReason);
+
+        if (other.gameObject.CompareTag(TRAP_TAG))
+        {
+            if (HasShield())
+            {
+                Shield.shieldDestroied = true;
+            }
+            else
+            {
+                string DeathReason = "";
+                DeathReason = TRAP_TAG;
+                Debug.Log(DeathReason);
+                Die(DeathReason);
+            }
         }
-        else if (other.gameObject.CompareTag(WATER_TAG)){
-             string DeathReason = "";   
-            DeathReason = WATER_TAG;
-            Debug.Log(DeathReason);
-            Die(DeathReason);
+        else if (other.gameObject.CompareTag(WATER_TAG))
+        {
+            if (HasShield())
+            {
+                Shield.shieldDestroied = true;
+            }
+            else
+            {
+                string DeathReason = "";
+                DeathReason = WATER_TAG;
+                Debug.Log(DeathReason);
+                Die(DeathReason);
+            }
         }
-        else if (other.gameObject.CompareTag(BOUND_TAG)) {
-            string DeathReason = "";   
-            DeathReason = BOUND_TAG;
-            Debug.Log(DeathReason);
-            Die(DeathReason);
-        } else if (other.gameObject.CompareTag("time_reward")) {
+        else if (other.gameObject.CompareTag(BOUND_TAG))
+        {
+            if (HasShield())
+            {
+                Shield.shieldDestroied = true;
+            }
+            else
+            {
+                string DeathReason = "";
+                DeathReason = BOUND_TAG;
+                Debug.Log(DeathReason);
+                Die(DeathReason);
+            }
+        }
+        else if (other.gameObject.CompareTag("time_reward"))
+        {
             timepopup.enabled = true;
             show_reward = true;
             isShow = true;
         }
-        else if (other.gameObject.CompareTag(ENEMY_TAG)){
-             string DeathReason = "";   
-            DeathReason = ENEMY_TAG;
-            Debug.Log(DeathReason);
-            Die(DeathReason);
+        else if (other.gameObject.CompareTag(ENEMY_TAG))
+        {
+            if (HasShield())
+            {
+                Destroy(other.gameObject);
+                Shield.shieldDestroied = true;
+            }
+            else
+            {
+                string DeathReason = "";
+                DeathReason = ENEMY_TAG;
+                Debug.Log(DeathReason);
+                Die(DeathReason);
+            }
         }
-        
 
+
+    }
+
+    protected bool HasShield()
+    {
+        return shield.activeSelf;
+    }
+
+    void ActivateShield()
+    {
+        shield.SetActive(true);
+    }
+
+    void DeactivateShield()
+    {
+        shield.SetActive(false);
+    }
+    private void shieldTimeUpdate()
+    {
+        if (HasShield())
+        {
+            shieldTimeLeft -= 1 * Time.deltaTime;
+            Debug.Log(shieldTimeLeft);
+            if (shieldTimeLeft < 0)
+            {
+                DeactivateShield();
+                Shield.shieldDestroied = false;
+            }
+        }
     }
 
     private void DeadAnimation()
@@ -192,8 +338,12 @@ public class BasicPlayer : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
     }
 
-    protected void Die(string DeathReason){
-        
+    protected void Die(string DeathReason)
+    {
+        // if(HasShield()){
+        //     // shieldTimeLeft = 5;
+        //     shieldDestroied = true;
+        // }else{
         //string DeathReason = "";water, detected by the tower, out of bound
         string DeathPosition = "(";
         DeathPosition += transform.position.x.ToString();
@@ -203,16 +353,19 @@ public class BasicPlayer : MonoBehaviour
         Debug.Log("Death position: " + DeathPosition);
 
         string DeathCharacter = "";
-        if (sr.color == Color.white){
+        if (sr.color == Color.white)
+        {
             DeathCharacter = "BasicPlayer";
         }
-        else if (sr.color == Color.blue){
+        else if (sr.color == Color.blue)
+        {
             DeathCharacter = "DashPlayer";
         }
-        else if (sr.color == Color.yellow){
+        else if (sr.color == Color.yellow)
+        {
             DeathCharacter = "AntiGravityPlayer";
         }
-        
+
         SendToGoogle stg = game_manager.GetComponent<SendToGoogle>();
         GameEvent game_event = game_manager.GetComponent<GameEvent>();
         DataStorage.Deathcnt += 1;
@@ -223,6 +376,7 @@ public class BasicPlayer : MonoBehaviour
         pauseMenuUI.SetActive(true);*/
         DeadAnimation();
         onGameOver?.Invoke();
+        // }
     }
 
 }

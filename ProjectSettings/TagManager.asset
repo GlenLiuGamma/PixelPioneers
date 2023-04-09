@@ -23,6 +23,10 @@ TagManager:
   - antihint2
   - PauseMenu
   - enemy
+  - Goal_Level3
+  - Goal_Level2
+  - zoomDestination
+  - Goal_Level4
   layers:
   - Default
   - TransparentFX
@@ -60,12 +64,21 @@ TagManager:
   - name: Background
     uniqueID: 4245374845
     locked: 0
+  - name: Background2
+    uniqueID: 3297113427
+    locked: 0
+  - name: Background3
+    uniqueID: 1465994641
+    locked: 0
+  - name: checkpoint
+    uniqueID: 539605849
+    locked: 0
   - name: Ground
     uniqueID: 1099899573
     locked: 0
-  - name: UI
-    uniqueID: 1318051655
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1318051655
     locked: 0
