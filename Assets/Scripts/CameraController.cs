@@ -95,11 +95,11 @@ public class CameraController : MonoBehaviour
         else
         {
             distance = Vector3.Distance(transform.position, playerTransform.position);
-            if (Mathf.Abs(x2 - transform.position.x) <= 15 && Mathf.Abs(y2 - transform.position.y) <= 15)
-            {
-                _difference = GetMousePosition - transform.position;
-                transform.position = _origin - _difference;
-            }
+            // if (Mathf.Abs(x2 - transform.position.x) <= 15 && Mathf.Abs(y2 - transform.position.y) <= 15)
+            // {
+            _difference = GetMousePosition - transform.position;
+            transform.position = _origin - _difference;
+            // }
         }
 
 
