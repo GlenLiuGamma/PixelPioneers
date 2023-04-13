@@ -23,7 +23,9 @@ public class StalkerEnemy : MonoBehaviour
 
     private float originalScale;
 
-    void Start() {
+
+    void Start()
+    {
         myRigidbody = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale.x;
     }
@@ -33,36 +35,37 @@ public class StalkerEnemy : MonoBehaviour
         float distToPlayer = Vector2.Distance(transform.position, player.position);
         if (distToPlayer < argoRange)
         {
-         ChasePlayer(); 
+            ChasePlayer();
         }
         else
         {
-         StopChasingPlayer();
+            StopChasingPlayer();
         }
 
-        
+
 
     }
     void ChasePlayer()
+    {
+        if (transform.position.x < player.position.x)
         {
-            if (transform.position.x < player.position.x)
-            {
-                //enemy is to the left side of the player, so move right
-                myRigidbody.velocity = new Vector2(movespeed, 0);
-                transform.localScale = new Vector2(originalScale,transform.localScale.y);
-            }
-            else
-            {
-                //enemy is to the right side of the player, so move left
-                myRigidbody.velocity = new Vector2(-movespeed, 0);
-                transform.localScale = new Vector2(-originalScale,transform.localScale.y);
-
-            }
+            //enemy is to the left side of the player, so move right
+            myRigidbody.velocity = new Vector2(movespeed, myRigidbody.velocity.y);
+            transform.localScale = new Vector2(originalScale, transform.localScale.y);
         }
-
-
-        void StopChasingPlayer()
+        else
         {
-            myRigidbody.velocity = new Vector2(0,myRigidbody.velocity.y + myRigidbody.gravityScale* Time.deltaTime);
+            //enemy is to the right side of the player, so move left
+            myRigidbody.velocity = new Vector2(-movespeed, myRigidbody.velocity.y);
+            transform.localScale = new Vector2(-originalScale, transform.localScale.y);
+
         }
+    }
+
+
+    void StopChasingPlayer()
+    {
+        if (myRigidbody.velocity.y == 0)
+            myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y + myRigidbody.gravityScale * Time.deltaTime);
+    }
 }
