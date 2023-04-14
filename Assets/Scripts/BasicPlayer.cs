@@ -124,7 +124,6 @@ public class BasicPlayer : MonoBehaviour
     {
         if (Shield.shieldDestroied)
         {
-            Debug.Log("hhhhhhhhhhhhhhh");
             shieldTimeUpdate();
         }
         if (isShow)
@@ -323,7 +322,6 @@ public class BasicPlayer : MonoBehaviour
         if (HasShield())
         {
             shieldTimeLeft -= 1 * Time.deltaTime;
-            Debug.Log(shieldTimeLeft);
             SpriteRenderer circle = GameObject.Find("Circle").GetComponent<SpriteRenderer>();
             if (((int)(shieldTimeLeft * 10)) % 2 == 0)
             {
