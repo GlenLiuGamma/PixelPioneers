@@ -14,35 +14,48 @@ public class CameraController : MonoBehaviour
     private Vector3 _origin;
     private Vector3 _difference;
 
+    private float distance;
+
+    private float speed = 30.0f;
+
     private Camera _mainCamera;
 
     private bool _isDragging;
 
     public bool _isZooming = false;
-    private void Awake() {
+
+    private bool Check_Pause;
+
+    private bool moveBack = false;
+
+    public GameObject Script;
+
+    private void Awake()
+    {
         _mainCamera = Camera.main;
 
     }
 
-    IEnumerator ZoomCameraToThePath() 
+    IEnumerator ZoomCameraToThePath()
     {
-        while(true)
+        while (true)
         {
-            if(_isZooming)
+            if (_isZooming)
             {
                 float distance = Vector3.Distance(transform.position, GameObject.Find("zoomDestination").transform.position);
-                if(distance > 0.01f)
+                if (distance > 0.01f)
                 {
                     transform.position = Vector3.MoveTowards(this.transform.position, GameObject.Find("zoomDestination").transform.position, 0.1f * Time.deltaTime);
                 }
                 else
-                {   
+                {
                     if (GameObject.Find("Background 2"))
                     {
                         GameObject.Find("Background 2").SetActive(false);
                     }
-                   yield return new WaitForSecondsRealtime(1.0f);
+                    yield return new WaitForSecondsRealtime(1.0f);
                     _isZooming = false;
+                    moveBack = true;
                 }
             }
             yield return null;
@@ -50,26 +63,58 @@ public class CameraController : MonoBehaviour
     }
 
 
-    public void OnDrag(InputAction.CallbackContext ctx) {
-        if (ctx.started) _origin = GetMousePosition;
-        _isDragging = ctx.started || ctx.performed;
+    public void OnDrag(InputAction.CallbackContext ctx)
+    {
+        if (Check_Pause == false)
+        {
+            if (ctx.started) _origin = GetMousePosition;
+            _isDragging = ctx.started || ctx.performed;
+        }
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (!_isDragging && !_isZooming) {
-            playerTransform = GameObject.Find(PLAYER_NAME).transform; 
-            transform.position = new Vector3(playerTransform.position.x + shift_x, playerTransform.position.y + shift_y, transform.position.z);
-        } 
+        PauseMenu pause = Script.GetComponent<PauseMenu>();
+        Check_Pause = pause.camera_pause;
+        playerTransform = GameObject.Find(PLAYER_NAME).transform;
+
+        float x2 = playerTransform.position.x + shift_x;
+        float y2 = playerTransform.position.y + shift_y;
+        float step = speed * Time.deltaTime;
+        Vector3 temp = new Vector3(playerTransform.position.x + shift_x, playerTransform.position.y + shift_y, transform.position.z);
+
+        if (!_isDragging && !_isZooming && !moveBack)
+        {
+            transform.position = temp;//Vector3.MoveTowards(transform.position, temp, step);  
+
+            
+        }
+        
         else if (_isZooming)
         {
-            Debug.Log("In is zooming");
+            //Debug.Log("In is zooming");
             StartCoroutine(ZoomCameraToThePath());
         }
-        else {
+        else if (moveBack) 
+        {
+            float distance = Vector3.Distance(transform.position, temp);
+            if (distance > 0.01f) {
+                transform.position = Vector3.MoveTowards(transform.position, temp, step); 
+            }
+            else {
+                moveBack = false;
+            }
+             //Vector3.MoveTowards(transform.position, temp, step);  
+        }
+        else
+        {
+            distance = Vector3.Distance(transform.position, playerTransform.position);
+            // if (Mathf.Abs(x2 - transform.position.x) <= 15 && Mathf.Abs(y2 - transform.position.y) <= 15)
+            // {
             _difference = GetMousePosition - transform.position;
             transform.position = _origin - _difference;
+            // }
         }
 
 
