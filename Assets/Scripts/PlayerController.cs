@@ -90,11 +90,23 @@ public class PlayerController : MonoBehaviour
         if (!isBasicPlayer)
         {
             timeLeft -= 1 * Time.deltaTime;
+
             timeLeftDisplay.color = Color.red;
+            if (timeLeft < 10)
+            {
+                if (((int)(timeLeft * 10)) % 2 == 0)
+                {
+                    timeLeftDisplay.color = Color.red;
+                }
+                else
+                {
+                    timeLeftDisplay.color = Color.clear;
+                }
+            }
         }
         else
         {
-            timeLeftDisplay.color = Color.black;
+            timeLeftDisplay.color = Color.white;
         }
         if (timeLeft < 0)
         {

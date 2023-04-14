@@ -36,7 +36,7 @@ TagManager:
   - UI
   - Tower
   - Ground
-  - 
+  - Time
   - 
   - 
   - 
@@ -81,4 +81,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1318051655
+    locked: 0
+  - name: Time
+    uniqueID: 3903732641
     locked: 0
