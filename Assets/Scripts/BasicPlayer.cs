@@ -324,6 +324,15 @@ public class BasicPlayer : MonoBehaviour
         {
             shieldTimeLeft -= 1 * Time.deltaTime;
             Debug.Log(shieldTimeLeft);
+            SpriteRenderer circle = GameObject.Find("Circle").GetComponent<SpriteRenderer>();
+            if (((int)(shieldTimeLeft * 10)) % 2 == 0)
+            {
+                circle.color = new Color(23f / 256, 236f / 256, 228f / 256, 101f / 256);
+            }
+            else
+            {
+                circle.color = Color.clear;
+            }
             if (shieldTimeLeft < 0)
             {
                 DeactivateShield();
