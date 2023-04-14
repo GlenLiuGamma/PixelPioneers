@@ -26,6 +26,8 @@ public class CameraController : MonoBehaviour
 
     private bool Check_Pause;
 
+    private bool moveBack = false;
+
     public GameObject Script;
 
     private void Awake()
@@ -53,6 +55,7 @@ public class CameraController : MonoBehaviour
                     }
                     yield return new WaitForSecondsRealtime(1.0f);
                     _isZooming = false;
+                    moveBack = true;
                 }
             }
             yield return null;
@@ -81,16 +84,28 @@ public class CameraController : MonoBehaviour
         float step = speed * Time.deltaTime;
         Vector3 temp = new Vector3(playerTransform.position.x + shift_x, playerTransform.position.y + shift_y, transform.position.z);
 
-
-        if (!_isDragging && !_isZooming)
+        if (!_isDragging && !_isZooming && !moveBack)
         {
-            playerTransform = GameObject.Find(PLAYER_NAME).transform;
             transform.position = temp;//Vector3.MoveTowards(transform.position, temp, step);  
+
+            
         }
+        
         else if (_isZooming)
         {
-            Debug.Log("In is zooming");
+            //Debug.Log("In is zooming");
             StartCoroutine(ZoomCameraToThePath());
+        }
+        else if (moveBack) 
+        {
+            float distance = Vector3.Distance(transform.position, temp);
+            if (distance > 0.01f) {
+                transform.position = Vector3.MoveTowards(transform.position, temp, step); 
+            }
+            else {
+                moveBack = false;
+            }
+             //Vector3.MoveTowards(transform.position, temp, step);  
         }
         else
         {
