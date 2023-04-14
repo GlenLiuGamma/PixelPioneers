@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            timeLeftDisplay.color = Color.black;
+            timeLeftDisplay.color = Color.white;
         }
         if (timeLeft < 0)
         {
