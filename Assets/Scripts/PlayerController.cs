@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     protected string PLAYER_NAME = "player";
-    private GameObject player; 
-    [SerializeField] private KeyCode[] keys = {KeyCode.Z, KeyCode.X, KeyCode.C};
+    private GameObject player;
+    [SerializeField] private KeyCode[] keys = { KeyCode.Z, KeyCode.X, KeyCode.C };
     [SerializeField] private HashSet<KeyCode> enableKeys = new HashSet<KeyCode>();
-    private string[] playerList = { "BasicPlayer", "DashPlayer","AntiGravityPlayer" };
+    private string[] playerList = { "BasicPlayer", "DashPlayer", "AntiGravityPlayer" };
     public static bool isBasicPlayer = true;
     public static bool isAntiGravityPlayer = false;
     public static bool isDashPlayer = false;
@@ -18,10 +18,19 @@ public class PlayerController : MonoBehaviour
     private Text timeLeftDisplay;
     private GameObject dashPlayerUI;
     private GameObject antigravityPlayerUI;
+
+    public static Vector3? lastCheckPointPos = null;
     // Start is called before the first frame update
-    void Awake(){
-        foreach(KeyCode key in keys){
+    void Awake()
+    {
+        foreach (KeyCode key in keys)
+        {
             enableKeys.Add(key);
+        }
+        if (lastCheckPointPos != null)
+        {
+            player = GameObject.Find(PLAYER_NAME);
+            player.transform.position = lastCheckPointPos.Value;
         }
     }
     void Start()
@@ -39,7 +48,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         SwitchPlayer();
         UpdateTime();
 
@@ -47,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchPlayer()
     {
-        if ( enableKeys.Contains(KeyCode.Z) && Input.GetKeyDown(KeyCode.Z) && !isBasicPlayer)
+        if (enableKeys.Contains(KeyCode.Z) && Input.GetKeyDown(KeyCode.Z) && !isBasicPlayer)
         {
             isBasicPlayer = true;
             isAntiGravityPlayer = false;
@@ -65,7 +74,7 @@ public class PlayerController : MonoBehaviour
             DestroyAll();
             player.AddComponent<DashPlayer>();
         }
-        if (timeLeft > 0 && enableKeys.Contains(KeyCode.C) && Input.GetKeyDown(KeyCode.C) &&!isAntiGravityPlayer)
+        if (timeLeft > 0 && enableKeys.Contains(KeyCode.C) && Input.GetKeyDown(KeyCode.C) && !isAntiGravityPlayer)
         {
             isBasicPlayer = false;
             isAntiGravityPlayer = true;
@@ -75,15 +84,32 @@ public class PlayerController : MonoBehaviour
             player.AddComponent<AntiGravityPlayer>();
         }
     }
-    private void UpdateTime(){
+    private void UpdateTime()
+    {
         timeLeftDisplay.text = Mathf.CeilToInt(timeLeft).ToString();
-        if (!isBasicPlayer){
-            timeLeft-= 1 * Time.deltaTime;
+        if (!isBasicPlayer)
+        {
+            timeLeft -= 1 * Time.deltaTime;
+
             timeLeftDisplay.color = Color.red;
-        }else{
-            timeLeftDisplay.color = Color.black;
+            if (timeLeft < 10)
+            {
+                if (((int)(timeLeft * 10)) % 2 == 0)
+                {
+                    timeLeftDisplay.color = Color.red;
+                }
+                else
+                {
+                    timeLeftDisplay.color = Color.clear;
+                }
+            }
         }
-        if(timeLeft < 0){
+        else
+        {
+            timeLeftDisplay.color = Color.white;
+        }
+        if (timeLeft < 0)
+        {
             timeLeft = 0;
             timeLeftDisplay.color = Color.red;
             isBasicPlayer = true;
@@ -91,7 +117,8 @@ public class PlayerController : MonoBehaviour
             player.AddComponent<BasicPlayer>();
             SetUIColorToGray();
         }
-        else if (timeLeft > 0){
+        else if (timeLeft > 0)
+        {
             ResetUIColor();
         }
     }
@@ -108,7 +135,7 @@ public class PlayerController : MonoBehaviour
     }
     private void DestroyAll()
     {
-        foreach(string playerType in playerList)
+        foreach (string playerType in playerList)
         {
             Destroy(player.GetComponent(playerType));
         }
@@ -122,10 +149,10 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         yield return new WaitForSecondsRealtime(0.01f);
         player.AddComponent<BasicPlayer>();
-        
+
     }
     void RestartGame()
-    { 
+    {
         StartCoroutine(WaitToStartGame());
     }
     void GetExtraTime(float timeBonus)
