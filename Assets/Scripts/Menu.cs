@@ -36,4 +36,16 @@ public class Menu: MonoBehaviour
     {
         SceneManager.LoadScene("Level4");
     }
+    public void Start_Tutorials()
+    {
+        SceneManager.LoadScene("Tutorials_Menu");
+    }
+    public void Start_Levels()
+    {
+        SceneManager.LoadScene("Levels_Menu");
+    }
+    public void Start_MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
