@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class GoalController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -60,6 +62,7 @@ public class GoalController : MonoBehaviour
         else if (other.gameObject.CompareTag("Goal_Tutorial2"))
         {
             Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("LevelComplete").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
             pauseMenuUI.SetActive(true);
