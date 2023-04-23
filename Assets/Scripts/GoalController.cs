@@ -25,6 +25,7 @@ public class GoalController : MonoBehaviour
         if (other.gameObject.CompareTag("Goal_Level1"))
         {
             Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("LevelComplete").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
             pauseMenuUI.SetActive(true);
@@ -80,6 +81,7 @@ public class GoalController : MonoBehaviour
         else if (other.gameObject.CompareTag("Goal_Level2"))
         {
             Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("LevelComplete").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
             pauseMenuUI.SetActive(true);
@@ -96,6 +98,7 @@ public class GoalController : MonoBehaviour
         else if (other.gameObject.CompareTag("Goal_Level3"))
         {
             Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("LevelComplete").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
             pauseMenuUI.SetActive(true);
@@ -113,6 +116,7 @@ public class GoalController : MonoBehaviour
         else if (other.gameObject.CompareTag("Goal_Level4"))
         {
             Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("LevelComplete").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
             pauseMenuUI.SetActive(true);
