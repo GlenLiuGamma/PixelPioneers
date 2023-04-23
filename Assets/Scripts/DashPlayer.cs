@@ -22,6 +22,10 @@ public class DashPlayer : BasicPlayer
         DashPlayerText.color = Color.blue;
         AntigravityPlayerText.color = Color.black;
         moveSpeed = 25f;
+        basicPlayerUI.color = PlayerController.basicPlayerIdleColor;
+        antigravityPlayerUI.color = PlayerController.antigravityPlayerIdleColor;
+        dashPlayerUI.color = PlayerController.dashPlayerUsingColor;
+        Debug.Log(dashPlayerUI.color);
     }
 
     protected override void OnCollisionEnter2D(Collision2D other)

@@ -21,5 +21,8 @@ public class AntiGravityPlayer : BasicPlayer
         BasicPlayerText.color = Color.black;
         DashPlayerText.color = Color.black;
         AntigravityPlayerText.color = Color.yellow;
+        basicPlayerUI.color = PlayerController.basicPlayerIdleColor;
+        antigravityPlayerUI.color = PlayerController.antigravityPlayerUsingColor;
+        dashPlayerUI.color = PlayerController.dashPlayerIdleColor;
     }
 }

@@ -22,9 +22,14 @@ public class BasicPlayer : MonoBehaviour
     protected BoxCollider2D coll;
     protected float dirX = 0f;
 
+
     protected Text BasicPlayerText;
     protected Text DashPlayerText;
     protected Text AntigravityPlayerText;
+
+    protected SpriteRenderer basicPlayerUI, dashPlayerUI, antigravityPlayerUI;
+
+
     [SerializeField] protected float moveSpeed = 16f;
     [SerializeField] protected float jumpForce = 30f;
     [SerializeField] protected LayerMask ground;
@@ -64,7 +69,8 @@ public class BasicPlayer : MonoBehaviour
 
     protected GameObject shield;
     public static float shieldTimeLeft = 3f;
-
+    // Blue 0,149,255 opacity: 96
+    // no time 0, 0 ,0 96
 
 
     private enum MovementState { idle, running, jump, fall };
@@ -83,6 +89,11 @@ public class BasicPlayer : MonoBehaviour
         BasicPlayerText = GameObject.Find("BasicPlayerText").GetComponent<Text>();
         DashPlayerText = GameObject.Find("DashPlayerText").GetComponent<Text>();
         AntigravityPlayerText = GameObject.Find("AntigravityPlayerText").GetComponent<Text>();
+
+        basicPlayerUI = GameObject.Find("Canvas/BasicPlayerUI").GetComponent<SpriteRenderer>(); ;
+        dashPlayerUI = GameObject.Find("Canvas/DashPlayerUI").GetComponent<SpriteRenderer>(); ;
+        antigravityPlayerUI = GameObject.Find("Canvas/AntiGravityPlayerUI").GetComponent<SpriteRenderer>(); ;
+
 
         ground = LayerMask.GetMask(GROUND_LAYER);
         water = LayerMask.GetMask(WATER_LAYER);
@@ -115,7 +126,10 @@ public class BasicPlayer : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x, Mathf.Abs(transform.localScale.y));
         rb.gravityScale = 8;
         sr.color = Color.white;
-        BasicPlayerText.color = Color.white;
+        basicPlayerUI.color = PlayerController.basicPlayerUsingColor;
+        antigravityPlayerUI.color = PlayerController.antigravityPlayerIdleColor;
+        dashPlayerUI.color = PlayerController.dashPlayerIdleColor;
+
         DashPlayerText.color = Color.black;
         AntigravityPlayerText.color = Color.black;
     }
