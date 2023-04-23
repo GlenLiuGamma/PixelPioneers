@@ -44,6 +44,7 @@ public class GoalController : MonoBehaviour
         else if (other.gameObject.CompareTag("Goal_Tutorial1"))
         {
             Time.timeScale = 0f;
+            pauseMenuUI.transform.Find("LevelComplete").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("NextLevel").transform.gameObject.SetActive(true);
             pauseMenuUI.transform.Find("ResumeButton").transform.gameObject.SetActive(false);
             pauseMenuUI.SetActive(true);

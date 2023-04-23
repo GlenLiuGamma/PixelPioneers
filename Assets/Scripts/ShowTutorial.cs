@@ -7,7 +7,7 @@ public class ShowTutorial : MonoBehaviour
 {
     [SerializeField] string tutorialText;
     public GameObject pauseTutorilUI;
-    public Text BasicPlayerText;
+    public Text TutorialTextComponent;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class ShowTutorial : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             pauseTutorilUI.SetActive(true);
-            BasicPlayerText.text = tutorialText;
+            TutorialTextComponent.text = tutorialText;
             Time.timeScale = 0f;
         }
     }
