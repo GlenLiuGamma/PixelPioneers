@@ -23234,31 +23234,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2355183734062970168, guid: 1fcab08efd3a347e6950daa81e59f38e, type: 3}
   m_PrefabInstance: {fileID: 1899738584}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1807929156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807929151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f413f6973bf1046afb2f7f6580b5de3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialoguePanel: {fileID: 0}
-  pressSpace: {fileID: 0}
-  pressX: {fileID: 0}
-  pressRight: {fileID: 0}
-  pressC: {fileID: 0}
-  dialogueText: {fileID: 0}
-  playerIsClose: 0
-  showX: 0
-  showRight: 0
-  showC: 0
-  closeWater: 0
-  closeSpike: 0
-  closeEdge: 0
 --- !u!114 &1807929157
 MonoBehaviour:
   m_ObjectHideFlags: 0

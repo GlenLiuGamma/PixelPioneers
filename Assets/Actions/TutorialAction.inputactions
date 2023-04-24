@@ -1,14 +1,14 @@
 {
-    "name": "PlayerInput",
+    "name": "TutorialAction",
     "maps": [
         {
-            "name": "Gameplay",
-            "id": "17a228e3-2ed3-4415-82a9-710c3fcb4baa",
+            "name": "Continue",
+            "id": "7eeb2d31-0d7e-4a79-b1f8-54ba2130f9ab",
             "actions": [
                 {
-                    "name": "Drag",
+                    "name": "PlayerAction",
                     "type": "Button",
-                    "id": "da5f5cf7-de5d-42e1-b16c-8413ab640409",
+                    "id": "ef80a109-43d1-4ac2-bce8-91c5b3307f32",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -18,12 +18,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "d96cbe7a-fa34-4dad-8ce8-c08a424caa27",
-                    "path": "<Mouse>/leftButton",
+                    "id": "c9e730cd-cc75-40f1-af99-79f5c0035da7",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Drag",
+                    "action": "PlayerAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
