@@ -37,7 +37,7 @@ TagManager:
   - Tower
   - Ground
   - Time
-  - 
+  - bg
   - 
   - 
   - 
@@ -61,6 +61,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: bg
+    uniqueID: 3373241477
+    locked: 0
   - name: Background
     uniqueID: 4245374845
     locked: 0
