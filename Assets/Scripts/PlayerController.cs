@@ -16,8 +16,21 @@ public class PlayerController : MonoBehaviour
     public static bool isDashPlayer = false;
     public float timeLeft = 10f;
     private Text timeLeftDisplay;
+    private GameObject basicPlayerUI;
     private GameObject dashPlayerUI;
     private GameObject antigravityPlayerUI;
+
+    public static Color basicPlayerIdleColor = new Color(255f / 255, 255f / 255, 255f / 255, 96f / 255);
+    public static Color basicPlayerUsingColor = new Color(255f / 255, 255f / 255, 255f / 255, 255f / 255);
+
+    public static Color dashPlayerIdleColor = new Color(0f / 255, 149f / 255, 255f / 255, 96f / 255);
+    public static Color dashPlayerUsingColor = new Color(0f / 255, 149f / 255, 255f / 255, 255f / 255);
+
+    public static Color antigravityPlayerIdleColor = new Color(255f / 255, 255f / 255, 0f / 255, 96f / 255);
+    public static Color antigravityPlayerUsingColor = new Color(255f / 255, 255f / 255, 0f / 255, 255f / 255);
+
+    public static Color deathColor = new Color(0f / 255, 0f / 255, 0f / 255, 96f / 255);
+
 
     public static Vector3? lastCheckPointPos = null;
     // Start is called before the first frame update
@@ -41,8 +54,9 @@ public class PlayerController : MonoBehaviour
         isAntiGravityPlayer = false;
         isDashPlayer = false;
         timeLeftDisplay = GameObject.Find("TimeLeft").GetComponent<Text>();
+        basicPlayerUI = GameObject.Find("Canvas/BasicPlayerUI");
         dashPlayerUI = GameObject.Find("Canvas/DashPlayerUI");
-        antigravityPlayerUI = GameObject.Find("Canvas/AntiGravityPlayer");
+        antigravityPlayerUI = GameObject.Find("Canvas/AntiGravityPlayerUI");
     }
 
     // Update is called once per frame
@@ -114,24 +128,35 @@ public class PlayerController : MonoBehaviour
             timeLeftDisplay.color = Color.red;
             isBasicPlayer = true;
             DestroyAll();
-            player.AddComponent<BasicPlayer>();
-            SetUIColorToGray();
+            StartCoroutine(AddComponentAndWait());
+
         }
-        else if (timeLeft > 0)
+        else if (timeLeft > 0 && isBasicPlayer)
         {
             ResetUIColor();
         }
     }
+    private IEnumerator AddComponentAndWait()
+    {
+        // Add a new component
+        player.AddComponent<BasicPlayer>();
+
+        // Wait until the component is added
+        yield return null;
+
+        // Now execute the code in the original file
+        SetUIColorToGray();
+    }
     private void SetUIColorToGray()
     {
 
-        dashPlayerUI.GetComponent<SpriteRenderer>().color = Color.gray;
-        antigravityPlayerUI.GetComponent<SpriteRenderer>().color = Color.gray;
+        dashPlayerUI.GetComponent<SpriteRenderer>().color = deathColor;
+        antigravityPlayerUI.GetComponent<SpriteRenderer>().color = deathColor;
     }
     private void ResetUIColor()
     {
-        dashPlayerUI.GetComponent<SpriteRenderer>().color = Color.blue;
-        antigravityPlayerUI.GetComponent<SpriteRenderer>().color = Color.yellow;
+        dashPlayerUI.GetComponent<SpriteRenderer>().color = dashPlayerIdleColor;
+        antigravityPlayerUI.GetComponent<SpriteRenderer>().color = antigravityPlayerIdleColor;
     }
     private void DestroyAll()
     {

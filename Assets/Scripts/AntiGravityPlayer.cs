@@ -17,9 +17,12 @@ public class AntiGravityPlayer : BasicPlayer
     {
         transform.localScale = new Vector2(transform.localScale.x, Mathf.Abs(transform.localScale.y));
         rb.gravityScale = 8;
-        sr.color = Color.yellow;
+        sr.color = PlayerController.antigravityPlayerUsingColor;
         BasicPlayerText.color = Color.black;
         DashPlayerText.color = Color.black;
-        AntigravityPlayerText.color = Color.yellow;
+        AntigravityPlayerText.color = PlayerController.antigravityPlayerUsingColor;
+        basicPlayerUI.color = PlayerController.basicPlayerIdleColor;
+        antigravityPlayerUI.color = PlayerController.antigravityPlayerUsingColor;
+        dashPlayerUI.color = PlayerController.dashPlayerIdleColor;
     }
 }
