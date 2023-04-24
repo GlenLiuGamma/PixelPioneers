@@ -1929,7 +1929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!20 &519420031 stripped
@@ -7342,7 +7342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d0505d462b14dfab0fb9118fc4cdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialText: This is the  checkpoint, halfway to go
+  tutorialText: This is the checkpoint, halfway to go
   pauseTutorilUI: {fileID: 306880807}
   TutorialTextComponent: {fileID: 991436205}
 --- !u!61 &1843771685
