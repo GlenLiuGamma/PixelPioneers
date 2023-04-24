@@ -125,7 +125,7 @@ public class BasicPlayer : MonoBehaviour
     {
         transform.localScale = new Vector2(transform.localScale.x, Mathf.Abs(transform.localScale.y));
         rb.gravityScale = 8;
-        sr.color = Color.white;
+        sr.color = PlayerController.basicPlayerUsingColor;
         basicPlayerUI.color = PlayerController.basicPlayerUsingColor;
         antigravityPlayerUI.color = PlayerController.antigravityPlayerIdleColor;
         dashPlayerUI.color = PlayerController.dashPlayerIdleColor;
@@ -374,15 +374,15 @@ public class BasicPlayer : MonoBehaviour
         Debug.Log("Death position: " + DeathPosition);
 
         string DeathCharacter = "";
-        if (sr.color == Color.white)
+        if (sr.color == PlayerController.basicPlayerUsingColor)
         {
             DeathCharacter = "BasicPlayer";
         }
-        else if (sr.color == Color.blue)
+        else if (sr.color == PlayerController.dashPlayerUsingColor)
         {
             DeathCharacter = "DashPlayer";
         }
-        else if (sr.color == Color.yellow)
+        else if (sr.color == PlayerController.antigravityPlayerUsingColor)
         {
             DeathCharacter = "AntiGravityPlayer";
         }

@@ -128,13 +128,24 @@ public class PlayerController : MonoBehaviour
             timeLeftDisplay.color = Color.red;
             isBasicPlayer = true;
             DestroyAll();
-            player.AddComponent<BasicPlayer>();
-            SetUIColorToGray();
+            StartCoroutine(AddComponentAndWait());
+
         }
-        else if (timeLeft > 0)
+        else if (timeLeft > 0 && isBasicPlayer)
         {
             ResetUIColor();
         }
+    }
+    private IEnumerator AddComponentAndWait()
+    {
+        // Add a new component
+        player.AddComponent<BasicPlayer>();
+
+        // Wait until the component is added
+        yield return null;
+
+        // Now execute the code in the original file
+        SetUIColorToGray();
     }
     private void SetUIColorToGray()
     {
@@ -144,8 +155,8 @@ public class PlayerController : MonoBehaviour
     }
     private void ResetUIColor()
     {
-        //dashPlayerUI.GetComponent<SpriteRenderer>().color = dashPlayerIdleColor;
-        //antigravityPlayerUI.GetComponent<SpriteRenderer>().color = antigravityPlayerIdleColor;
+        dashPlayerUI.GetComponent<SpriteRenderer>().color = dashPlayerIdleColor;
+        antigravityPlayerUI.GetComponent<SpriteRenderer>().color = antigravityPlayerIdleColor;
     }
     private void DestroyAll()
     {

@@ -15,4 +15,12 @@ public class ShowArrow : MonoBehaviour
             //SquareMask.SetActive(true);
         }
     }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Arrow.SetActive(false);
+            //SquareMask.SetActive(true);
+        }
+    }
 }

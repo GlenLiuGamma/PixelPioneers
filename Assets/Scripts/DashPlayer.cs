@@ -17,9 +17,9 @@ public class DashPlayer : BasicPlayer
     {
         transform.localScale = new Vector2(transform.localScale.x, Mathf.Abs(transform.localScale.y));
         rb.gravityScale = 8;
-        sr.color = Color.blue;
+        sr.color = PlayerController.dashPlayerUsingColor;
         BasicPlayerText.color = Color.black;
-        DashPlayerText.color = Color.blue;
+        DashPlayerText.color = PlayerController.dashPlayerUsingColor;
         AntigravityPlayerText.color = Color.black;
         moveSpeed = 25f;
         basicPlayerUI.color = PlayerController.basicPlayerIdleColor;
